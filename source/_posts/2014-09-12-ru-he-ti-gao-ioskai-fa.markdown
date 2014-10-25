@@ -4,7 +4,7 @@ title: "如何提高iOS开发技能"
 date: 2014-09-12 08:54:10 +0800
 comments: true
 author: iYiming
-categories: 
+categories: iOS
 ---
 ## 0.关于使用CocoaPods  
 >  [CocoaPods官方教程](http://cocoapods.org/)  
