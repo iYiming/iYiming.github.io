@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://iyiming.github.io/sitemap.xml 
