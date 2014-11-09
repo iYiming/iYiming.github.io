@@ -6,7 +6,7 @@ comments: true
 categories: IT
 ---
 
-本文章只是简单把自己常用的罗列一下，便于查找。本文主要参考 [GitHub Git Cheat Sheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)。如果你想系统的学习Git，你可以阅读[官方中文文档](http://git-scm.com/doc),当然也可从这里下载[中文Pro Git epub下载地址](http://pan.baidu.com/s/1c0xUk3e)。后续学到内容，会在本文章里持续更新。  
+本文章只是简单把自己常用的Git命令罗列一下，便于查找。本文主要参考 [GitHub Git Cheat Sheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)。如果你想系统的学习Git，你可以阅读[官方中文文档](http://git-scm.com/doc),可以从这里下载[中文Pro Git epub下载地址](http://pan.baidu.com/s/1c0xUk3e)。后续学到内容，会在本文章里持续更新。  
 
 ##0.安装Git
 
