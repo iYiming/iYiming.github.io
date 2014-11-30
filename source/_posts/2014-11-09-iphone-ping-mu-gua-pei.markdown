@@ -3,7 +3,7 @@ layout: post
 title: "iPhone 屏幕适配"
 date: 2014-11-09 14:32:22 +0800
 comments: true
-categories: 
+categories: iOS
 ---
 随着iPhone6、iPhone6 plus的发布，屏幕适配任务是每一个iOS开发者必须面对的问题。最近也在做适配，由于界面布局都是用代码写的，适配变得比较麻烦，中间也遇到了不少的问题，现在整理一下。另外，随着iOS8带来的Size Classes，以后手写界面将会成为历史。  
 
