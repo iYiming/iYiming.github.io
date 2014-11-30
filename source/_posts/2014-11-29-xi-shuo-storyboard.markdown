@@ -30,7 +30,8 @@ Storyboard是iOS应用程序的用户界面的可视化表示，展示屏幕的�
 为了详细说明Storyboard中所包含内容，做个Demo详细介绍下：  
 注明：本篇只是简单介绍Storyboard的基本用法，暂未讨论Autolayout、Size Classes。以后会对Autolayout、Size Classes分别写篇文章单独介绍。  
 
-[代码下载地址](https://github.com/iYiming/YMStoryboard)  
+代码下载：  
+[https://github.com/iYiming/YMStoryboard](https://github.com/iYiming/YMStoryboard)  
 
 参考文章：  
 [官网Storyboard教程1](https://developer.apple.com/library/ios/documentation/general/conceptual/Devpedia-CocoaApp/Storyboard.html)  

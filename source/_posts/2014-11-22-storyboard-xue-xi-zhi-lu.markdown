@@ -4,7 +4,7 @@ title: "Storyboard 学习之路"
 date: 2014-11-22 22:30:55 +0800
 comments: true
 categories: iOS
-published: true
+published: false
 ---
 
 不知道什么原因，一开始做iOS时就不喜欢用拖控件的方式来做界面布局，可能是深受.NET的影响。原先看过[大牛喵神的一篇文章](http://onevcat.com/2013/12/code-vs-xib-vs-storyboard/)，
