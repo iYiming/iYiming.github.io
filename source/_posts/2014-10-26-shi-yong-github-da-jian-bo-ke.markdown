@@ -66,3 +66,4 @@ categories: IT
 [第三方Octopress主题](https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes)  
 [StackOverflow解决中间出现的问题](http://stackoverflow.com/questions/17609453/rake-gen-deploy-rejected-in-octopress/18037705)  
 [新申请域名连接到Github博客](http://jser.me/2012/11/17/%E8%87%AA%E5%AE%9A%E4%B9%89github-pages%E7%9A%84%E5%9F%9F%E5%90%8D.html)  
+[Generating SSH keys](https://help.github.com/articles/generating-ssh-keys/)
