@@ -159,5 +159,6 @@ Core Animation 有两种不同的方式来通知 动画状态。
 
 参考文章：  
 [苹果官方文档 Core Animation Guid](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/CreatingBasicAnimations/CreatingBasicAnimations.html#//apple_ref/doc/uid/TP40004514-CH3-SW1)  
+[苹果官方：KeyPath](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreAnimation_guide/Key-ValueCodingExtensions/Key-ValueCodingExtensions.html)  
 [动画解释](http://objccn.io/issue-12-1/)  
 [Core Animation 之基础介绍](http://blog.csdn.net/totogo2010/article/details/8604719)  
