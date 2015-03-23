@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Flask Web开发学习笔记（三）"
+date: 2015-03-22 22:24:45 +0800
+comments: true
+categories: Python
+---
+
+新Flask文章，已发表到[简书](http://www.jianshu.com/p/417bcbad82fb)上了。生成图片放下边啦。
+
+![天天向上](/images/flask_web_03/flask_web_03_01.png) 
