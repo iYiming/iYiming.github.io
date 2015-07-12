@@ -1,0 +1,191 @@
+---
+layout: post
+title: "WatchKit(二):WKInterfaceController生命周期、控制器、控件布局"
+date: 2015-05-17 14:43:22 +0800
+comments: true
+categories: iOS
+---
+
+单独的interface controller对象管理一个场景，interface controller 是一个WKInterfaceController实例，WKInterfaceController是Apple Watch应用独有的控制器，就好比iOS中的UIViewController, WKInterfaceController与UIViewController不同的是，WKInterfaceController继承自NSObject而UIViewController继承自UIResponder。因为WKInterfaceController不会管理Apple Watch应用界面，实际上Apple Watch应用的界面是被WatchKit管理的。
+
+#0.WKInterfaceController生命周期
+
+![WatchKit2_01](/images/WatchKit2/WatchKit2_01.png)
+
+打开Apple Watch上面的应用，先加载Storyboard，再初始化界面、显示界面。
+在初始化界面和显示界面上调用了几个WKInterfaceController方法，这个就是WKInterfaceController生命周期。
+
+我们打开上节创建的iWatch项目，打开iWatch WatchKit Extension文件夹下的InterfaceController.m文件，看到如下几个方法：
+
+```
+- (void)awakeWithContext:(id)context；
+- (void)willActivate;
+- (void)didDeactivate;
+```
+当然还有个init方法。
+
+init：用来初始化Interface Controller
+awakeWithContext:类似UIViewcontroller中的viewDidLoad:方法，用来配置interface controller  
+willActivate:界面将要显示给用户时会被调用，类似UIViewcontroller中的viewWillAppear:方法。这个方法主要用来对视图进行一些小的调整，大规模的初始化还是要放在init和awakeWithContext:里  
+didDeactivate:用来清空界面，程序进入不活动状态。可以用它来终止Timers或者来停止动画。在这个方法里不能再对界面进行操作。  
+
+在测试期间，可以通过锁定或者解锁模拟器（选择模拟器->Hardware->Lock 或者选择模拟器使用Command + L命令来锁定）来验证willActivate:方法或者didDeactivate：方法是否调用。
+
+#1.控制器、控件及布局
+
+先来说下控制器，WatchKit下现在有2种控制器：
+
+0.WKInterfaceController:除了Apple Watch应用主界面使用WKInterfaceController外，Glances界面也使用WKInterfaceController。  
+1.WKUserNotificationInterfaceController：听名字就很明显，自定义通知使用的控制器。
+
+再来说下控件：
+
+WatchKit中的控件都继承自WKInterfaceObject，并且都以WKInterface开头。
+
+举几个和iOS中类似的控件： 
+
+>WKInterfaceLabel：标签  
+WKInterfaceButton：按钮  
+WKInterfaceImage：类似UIImageView用于显示图片    
+WKInterfaceTable：表格，类似UITableView  
+WKInterfaceSwitch：开关
+WKInterfaceSlider：滑动条
+WKInterfaceMap：用于显示地图
+
+WatchKit独有的控件:
+
+A timer counts up or down to a specified time. The displayed string can be customized with different units and formats.
+
+>WKInterfaceGroup：其他控件的容器，用来管理其他控件的布局。可以指定背景色或者图片。  
+>WKInterfaceSeparator:分隔视图。是一条可见的线，用来分隔界面内容。  
+> WKInterfaceDate：日期对象，用来展示当前日期和时间，可以使用WatchKit提前定义好的样式或者自定义样式。  
+> WKInterfaceTimer：计时器控件，可以到指定的时间，可升可降，可以自定义不同的规格化。
+> WKInterfaceMenu：菜单，他的每个字条目加WKInterfaceMenuItem，要注意的是它不像其它控件，在WKInterfaceController我们不能直接书写他。当在WatchKit应用界面长按时它就会出现。每个WKInterfaceMenuItem有个selector事件。
+
+最后说下布局：
+
+WatchKit使用的是自己独有的布局，WatchKit应用不使用iOS上应用的布局方式。
+
+Xcode会自动帮你安置控件的位置。在运行时，Apple Watch会根据合理的空间来安排相应的位置。
+
+尽管Xcode给我们做好了一切，但是我们还是想自定义一些控件的位置，我们可以使用Attributes inspector来配置。我们可以设置他水平和垂直放置方式以及Size大小，是固定还是自动扩充。如下图，添加了一个按钮，设置按钮水平方向和垂直方向都居中，宽度自适应，高度写死为100：
+
+![WatchKit2_02](/images/WatchKit2/WatchKit2_02.png)  
+
+WKInterfaceGroup对象是一个重要工具来安排界面元素显示，WKInterfaceGroup是其他界面元素的容器，可以设置界面元素水平或者垂直方向显示方式，可以再嵌套WKInterfaceGroup，可以使用每个组的间距来改变元素的位置和大小。它没有默认的可视化显示，你可以给他自定义背景色或者自定义图片。
+
+苹果官方给我们展示了一个布局例子，比较有代表性，如下图：
+
+![WatchKit2_03](/images/WatchKit2/WatchKit2_03.png)  
+
+##2.一个Demo：使用Table显示数据
+
+由于WatchKit中的Table和UIKit中的Tabel不一样，所以详细学习下：  
+
+0.拖一个WKInterfaceTabel到Storyboard上，如下图：
+
+![WatchKit2_04](/images/WatchKit2/WatchKit2_04.png) 
+
+1.选中TableRowController，添加WKInterfaceImage图片视图和WKInterfaceLabel标签。如下图：
+
+![WatchKit2_05](/images/WatchKit2/WatchKit2_05.png) 
+
+2.我们来进行布局，选中WKInterfaceImage，水平居左显示，垂直居中显示，大小固定，宽度高度都为40，WKInterfaceLabel，水平居左显示，垂直居上显示，宽度高度自适应。
+
+WKInterfaceImage显示：
+
+![WatchKit2_06](/images/WatchKit2/WatchKit2_06.png)   
+
+WKInterfaceLabel显示：  
+
+![WatchKit2_07](/images/WatchKit2/WatchKit2_07.png) 
+
+3.设置RowController的Identity：  
+
+![WatchKit2_08](/images/WatchKit2/WatchKit2_08.png) 
+
+4.选中iWatch WatchKit Extension创建新文件ImageLabelRowController.h，ImageLabelRowController.m
+
+![WatchKit2_09](/images/WatchKit2/WatchKit2_09.png)
+
+命名为ImageLabelRowController：
+
+![WatchKit2_10](/images/WatchKit2/WatchKit2_10.png)
+
+5.选择Storyboard中的rowController，指定Class为ImageLabelRowController
+
+![WatchKit2_11](/images/WatchKit2/WatchKit2_11.png)
+
+6.连接相应的控件到ImageLabelRowController.h,注意要引入```#import <WatchKit/WatchKit.h>```
+
+![WatchKit2_12](/images/WatchKit2/WatchKit2_12.png)
+
+7.连接Table到InterfaceController.  
+
+![WatchKit2_13](/images/WatchKit2/WatchKit2_13.png)
+
+8.码代码
+
+```
+#import "InterfaceController.h"
+#import "ImageLabelRowController.h"
+
+@interface InterfaceController()
+
+@property (weak, nonatomic) IBOutlet WKInterfaceTable *table;
+
+@end
+
+
+@implementation InterfaceController
+
+- (void)awakeWithContext:(id)context {
+[super awakeWithContext:context];
+// Configure interface objects here.
+
+[self settingUI];//配置界面
+}
+
+- (void)willActivate {
+// This method is called when watch view controller is about to be visible to user
+[super willActivate];
+}
+
+- (void)didDeactivate {
+// This method is called when watch view controller is no longer visible
+[super didDeactivate];
+}
+
+
+/**
+*  @author iYiming, 15-05-17 13:14:00
+*
+*  配置界面
+*/
+- (void) settingUI
+{
+[_table setNumberOfRows:4 withRowType:@"ImageLabelRowController"];//注意这里的rowType 就是刚才我们设置的Identity
+
+for (NSInteger i = 0; i < 4; i++) {
+ImageLabelRowController *rowController = (ImageLabelRowController *)[_table rowControllerAtIndex:i];
+
+//指示图片
+NSString *imageName = @"IndicatorImage";//写死好了 用了一个pdf文件
+[rowController.indicatorImage setImageNamed:imageName];
+
+//标题
+NSString *titleStr = [NSString stringWithFormat:@"标题%@",@(i)];
+[rowController.titleLabel setText:titleStr];
+}
+}
+```
+
+需要注意的是：
+0.WKInterfaceTable不存在 DataSource 和 Delegate。  
+1.WKInterfaceTable 通过-setNumberOfRows:withRowType: 进行设定行数。   
+2.使用 -rowControllerAtIndex: 来获取对应的行。  
+3. IndicatorImage放在iWatch WatchKit App文件夹下的Images.xcassets里。
+
+OK，大功告成，AppleWatch显示如下：  
+
+![WatchKit2_14](/images/WatchKit2/WatchKit2_14.png)

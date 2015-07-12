@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Flask Web开发学习笔记（六）"
+date: 2015-05-02 00:16:00 +0800
+comments: true
+categories: Python
+---
+
+新Flask文章，使用Flask-SQLAlchemy进行数据库操作，已发表到[简书](http://www.jianshu.com/p/dbeec464c3ad)上了。生成图片放下边啦。
+
+![天天向上](/images/flask_web_06/flask_web_06_01.png) 

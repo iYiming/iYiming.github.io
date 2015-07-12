@@ -1,0 +1,64 @@
+---
+layout: post
+title: "WatchKit(一)：创建一个Apple Watch应用"
+date: 2015-05-17 14:43:08 +0800
+comments: true
+categories: iOS
+---
+
+WatchKit应用需要一个配套的iOS应用。在你的iOS应用Xcode项目中，你添加了一个新WatchKit target，Xcode会自动配置并初始化WatchKit应用和WatchKit扩展需要的资源。
+
+WatchKit 应用和WatchKit扩展捆绑在一起，打包进iOS应用中。当安装iOS应用时，系统会提示用户匹配的Apple Watch安装相应的WatchKit应用。
+
+注意：
+WatchKit 开发需要iOS 8.2 SDK及以后版本。
+
+##0.创建一个iOS应用 iWatch
+![WatchKit1_01](/images/WatchKit1/WatchKit1_01.png)
+
+##1.添加Watch Target
+![WatchKit1_02](/images/WatchKit1/WatchKit1_02.png)  
+![WatchKit1_03](/images/WatchKit1/WatchKit1_03.png)  
+
+选择Next  
+
+![WatchKit1_04](/images/WatchKit1/WatchKit1_04.png)  
+
+选择Finish
+
+创建成功，将会看到如下：
+
+![WatchKit1_05](/images/WatchKit1/WatchKit1_05.png)
+
+选择iWatch WatchKit App，如下图：
+
+![WatchKit1_06](/images/WatchKit1/WatchKit1_06.png)
+
+选择Command + R，运行。  
+
+将会看到如下两个模拟器（iPhone模拟器，Apple Watch 模拟器，如果没有看到的话选择按照菜单的步骤，来显示Apple Watch 模拟器）：
+
+![WatchKit1_07](/images/WatchKit1/WatchKit1_07.png)
+
+##2.项目框架
+
+![WatchKit1_08](/images/WatchKit1/WatchKit1_08.png)  
+
+iWatch WatchKit App：WatchKit应用，仅包含与Apple Watch应用用户界面相关的storyboards和资源文件。  
+iWatch WatchKit Extension：WatchKit扩展，包含管理WatchKit应用用户界面的代码和处理用户的响应。  
+
+下图显示WatchKit应用和WatchKit扩展之间如何通讯
+
+![WatchKit1_09](/images/WatchKit1/WatchKit1_09.png)
+
+Xcode项目结构：  
+
+![WatchKit1_10](/images/WatchKit1/WatchKit1_10.png)
+
+iWatch WatchKit App文件夹下：  
+Interface.storyboard 包含所有的Apple Watch应用的界面的显示，见下图：
+![WatchKit1_10](/images/WatchKit1/WatchKit1_11.png)
+
+绿色框中展示Apple Watch应用主界面元素。与之对应的.h.m文件是iWatch WatchKit Extension文件夹下的InterfaceController.h 和 InterfaceController.m文件。
+
+黄色框中展示Apple Watch通知界面元素。在通知界面上Apple Watch应用与iOS应用不同，Apple Watch应用可以自定义界面。与之对应的.h.m文件是iWatch WatchKit Extension文件夹下的NotificationController.h 和 NotificationController.m文件。
