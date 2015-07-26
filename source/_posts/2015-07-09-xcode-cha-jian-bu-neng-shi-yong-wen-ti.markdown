@@ -68,6 +68,6 @@ OK，到这里我们下载完毕并成功安装完Xcode命令工具。
 
 下载下来，进入到这个文件夹，使用 ```sh refreshPluginsAfterXcodeUpgrading.sh```命令，即可安装成功。
 
-这会儿在看看是不是下图这个结果：  
+重启Xcode，这会儿再看看是不是下图这个结果：  
 
 ![Alcatraz](/images/xcode_plug/4.png)

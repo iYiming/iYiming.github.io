@@ -6,17 +6,13 @@ comments: true
 categories: IT
 ---
 
-本文章只是简单把自己常用的Git命令罗列一下，便于查找。本文主要参考 [GitHub Git Cheat Sheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)。如果你想系统的学习Git，你可以阅读[官方中文文档](http://git-scm.com/doc),可以从这里下载[中文Pro Git epub下载地址](http://pan.baidu.com/s/1c0xUk3e)。后续学到内容，会在本文章里持续更新。  
+本文章只是简单把自己常用的Git命令罗列一下，便于查找。本文主要参考 [GitHub Git Cheat Sheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)。如果你想系统的学习Git，你可以阅读[官方中文文档](http://git-scm.com/doc),可以从这里下载[中文Pro Git epub下载地址](http://pan.baidu.com/s/1c0xUk3e)。后续学到内容，会在本文章里更新。  
 
 ##0.安装Git
 
 [各平台版本Git下载](http://git-scm.com/downloads) 
 
-如果想使用Git图形化操作(推荐使用命令行工具)，不仅包括全部常用仓库操作功能，还能自动更新命令行Git版本  
-
-[Windows版下载地址](https://windows.github.com)   
-
-[Mac版下载地址](https://mac.github.com)  
+Mac OS X、Windows、Linux、Solaris版本，根据系统下载相应的安装器，安装即可。
 
 ##1.配置Git   
 
