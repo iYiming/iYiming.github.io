@@ -14,7 +14,7 @@ categories: iOS
 
 你已经递交你的应用程序的崩溃报告，但是栈回溯包含了难懂的内存地址。开发者该怎么办？简而言之，你需要调试符号来应用于堆栈追踪，从而使它人类可读，这个过程我们称作符号化。
 
-在开始之前，我们依照使用Crasher，它提供了一个简单崩溃报告，让你破译。
+在开始之前，我们依照使用[Crasher](https://github.com/chaledoubleencore/Crasher)，它提供了一个简单崩溃报告，让你破译。
 
 你应该有.crash文件。如果没有，你可以从iTunes Connect中攫取，或者直接通过Xcode从连接的设备中攫取（Windows > Devices）,或在一个连接的设备（Settings > Privacy > Diagnostics & Usage）,或使用 PLCrashReporter 框架。你可能已经使用了第三方的崩溃报告服务，在你配置正确后，它将符号化你的崩溃。
 
