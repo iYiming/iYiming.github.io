@@ -1,0 +1,457 @@
+---
+layout: post
+title: "test"
+date: 2015-09-14 17:16:29 +0800
+comments: true
+categories: 
+published: false
+---
+
+#数据表结构 
+
+**系统表**：
+>0.`sqlite_master` 
+>
+>1.`sqlite_sequence `  
+
+**自定义表**：  
+>0.`table_NewPatient` 患者表  
+>
+>1.`table_NewPatientRelation` 自建患者和网站患者关系表
+>
+>2.`table_NewPatientGroup` 患者组表
+>
+>3.`table_NewPatientGroupRelation` 患者组关系表  
+>
+>4.`table_NewPatientCourse` 病程表
+>
+>5.`table_NewPatientCourseDetail` 病程详情表  
+>
+>6.`table_AttachmentEntity` 附件表
+>
+>7.`table_HDFPatientSuggestionModel` 建议表  
+>
+>8.`table_HDFPatientSuggestionContentModel` 建议详情表
+>
+>9.`table_HDFDoctorScheduleModel` 事项提醒表 
+>
+>10.`table_SyncVersion` 版本表
+
+##系统表
+
+###0.sqlite_master表
+
+**它定义数据库的模式。**
+
+<table>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+<tr>
+<td> type </td>
+<td>对于表，值为table；对于索引，值为index</td>
+</tr>
+<tr>
+<td> name </td>
+<td>对于表，值为表名称；对于索引，值为索引名称；</td>
+</tr>
+<tr>
+<td> tbl_name </td>
+<td>表名称</td>
+</tr>
+<tr>
+<td> rootpage </td>
+<td>stores the page number of the root b-tree page for tables and indexes.  For rows that define views, triggers, and virtual tables, the rootpage column is 0 or NULL.</td>
+</tr>
+<tr>
+<td> sql </td>
+<td>对于表，值为创建表SQL语句；对于索引，值为创建索引SQL语句</td>
+</tr>
+</table>
+
+###1.sqlite_sequence表
+
+**当SQLite数据库中包含自增列时，会自动建立一个名为 ``sqlite_sequence`` 的表。用于管理表中自增字段。**
+
+<table>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+<tr>
+<td> name </td>
+<td>记录自增列所在的表的名称</td>
+</tr>
+<tr>
+<td> seq </td>
+<td>记录当前序号（下一条记录的编号就是当前序号加1）</td>
+</tr>
+</table>
+
+**注：**
+>  
+>0.如果想把某个自增列的序号归零，只需要修改 `sqlite_sequence` 表就可以了。  
+>
+>``UPDATE sqlite_sequence SET seq = 0 WHERE name='TableName';``  
+>
+>也可以直接把该记录删掉:  
+>
+>``DELETE FROM sqlite_sequence WHERE name='TableName';``  
+>
+>1.要想将所有表的自增列都归零，直接清空sqlite_sequence表就可以了：  
+>
+>``DELETE FROM sqlite_sequence;``
+
+##自定义表
+
+**注：表太多，仅列出表中表与表关系字段及特殊含义字段。**
+
+###0.table_NewPatient表
+
+**患者表，存储着所有患者信息，包含自建患者，网站患者。**
+
+<table>
+<tr>
+<th> 字段 </th>
+<th> 数据类型 </th>
+<th> 含义 </th>
+</tr>
+<tr>
+<td> ID </td>
+<td> INTEGER </td>
+<td> ID </td>
+</tr>
+<tr>
+<td> serverId </td>
+<td> TEXT </td>
+<td> 服务端ID </td>
+</tr>
+<tr>
+<td> <b>patientType</b> </td>
+<td> TEXT </td>
+<td> 患者类型。 <b>0:网站患者；1:本地自建患者；</b></td>
+</tr>
+<tr>
+<td> doctorId </td>
+<td> TEXT </td>
+<td> 医生ID </td>
+</tr>
+<tr>
+<td> <b>modifyStatus</b> </td>
+<td> TEXT </td>
+<td> 修改状态。<b>0:无操作；1:新增的；2:修改过的；3:删除的</b></td>
+</tr>
+<tr>
+<td> ... </td>
+<td> ... </td>
+<td> ... </td>
+</tr>
+</table>
+
+###1.table_NewPatientRelation表
+
+**自建患者与网站患者相关联的关系表**  
+
+<table>
+<tr>
+<th> 字段 </th>
+<th> 数据类型 </th>
+<th> 含义 </th>
+</tr>
+<tr>
+<td> ID </td>
+<td> INTEGER </td>
+<td> ID </td>
+</tr>
+<tr>
+<td> serverId </td>
+<td> TEXT </td>
+<td> 服务端ID </td>
+</tr>
+<tr>
+<td> <b>selfCreatePatientLocalId</b> </td>
+<td> TEXT </td>
+<td> 自建患者本地ID</td>
+</tr>
+<tr>
+<td> <b> selfCreatePatientServerId </b> </td>
+<td> TEXT </td>
+<td> 自建患者ServerID </td>
+</tr>
+<tr>
+<td> <b> webCreatePatientLocalId </b> </td>
+<td> TEXT </td>
+<td> 网站患者本地ID</td>
+</tr>
+<tr>
+<td> <b> webCreatePatientServerId </b> </td>
+<td> TEXT </td>
+<td> 网站患者ServerID </td>
+</tr>
+<tr>
+<td> doctorId </td>
+<td> TEXT </td>
+<td> 医生ID </td>
+</tr>
+<tr>
+<td> <b>modifyStatus</b> </td>
+<td> TEXT </td>
+<td> 修改状态。<b>0:无操作；1:新增的；2:修改过的；3:删除的</b></td>
+</tr>
+<tr>
+<td> ... </td>
+<td> ... </td>
+<td> ... </td>
+</tr>
+</table>
+
+**注：自建患者ID/ServerID和网站患者ID/ServerID都存在``table_NewPatient ``中，对应相应的ID和ServerID**
+
+###2. table_NewPatientGroup表
+
+**患者组表**  
+
+<table>
+<tr>
+<th> 字段 </th>
+<th> 数据类型 </th>
+<th> 含义 </th>
+</tr>
+<tr>
+<td> ID </td>
+<td> INTEGER </td>
+<td> ID </td>
+</tr>
+<tr>
+<td> serverId </td>
+<td> TEXT </td>
+<td> 服务端ID </td>
+</tr>
+<tr>
+<td> <b> groupType </b> </td>
+<td> TEXT </td>
+<td> 组类型 <b>1:未分组；2:其他分组；</b>  </td>
+</tr>
+<tr>
+<td> doctorId </td>
+<td> TEXT </td>
+<td> 医生ID </td>
+</tr>
+<tr>
+<td> <b>modifyStatus</b> </td>
+<td> TEXT </td>
+<td> 修改状态。<b>0:无操作；1:新增的；2:修改过的；3:删除的</b></td>
+</tr>
+<tr>
+<td> ... </td>
+<td> ... </td>
+<td> ... </td>
+</tr>
+</table>
+
+###3. table_NewPatientGroupRelation表
+
+**患者与患者组关系表，患者与患者组是多对多关系**  
+
+<table>
+<tr>
+<th> 字段 </th>
+<th> 数据类型 </th>
+<th> 含义 </th>
+</tr>
+<tr>
+<td> ID </td>
+<td> INTEGER </td>
+<td> ID </td>
+</tr>
+<tr>
+<td> serverId </td>
+<td> TEXT </td>
+<td> 服务端ID </td>
+</tr>
+<tr>
+<td> <b> patientLocalId </b> </td>
+<td> TEXT </td>
+<td> 患者本地ID  </td>
+</tr>
+<tr>
+<td> <b> patientServerId </b> </td>
+<td> TEXT </td>
+<td> 患者ServerID  </td>
+</tr>
+<tr>
+<td> <b> groupLocalId </b> </td>
+<td> TEXT </td>
+<td> 组本地ID  </td>
+</tr>
+<tr>
+<td> <b> groupServerId </b> </td>
+<td> TEXT </td>
+<td> 组 ServerID  </td>
+</tr>
+<tr>
+<td> <b>patientType</b> </td>
+<td> TEXT </td>
+<td> 患者类型。 <b>0:网站患者；1:本地自建患者；</b></td>
+</tr>
+<tr>
+<td> doctorId </td>
+<td> TEXT </td>
+<td> 医生ID </td>
+</tr>
+<tr>
+<td> <b>modifyStatus</b> </td>
+<td> TEXT </td>
+<td> 修改状态。<b>0:无操作；1:新增的；2:修改过的；3:删除的；</b></td>
+</tr>
+<tr>
+<td> ... </td>
+<td> ... </td>
+<td> ... </td>
+</tr>
+</table>
+
+###4. table_NewPatientCourse表
+
+**患者病程表**  
+
+<table>
+<tr>
+<th> 字段 </th>
+<th> 数据类型 </th>
+<th> 含义 </th>
+</tr>
+<tr>
+<td> ID </td>
+<td> INTEGER </td>
+<td> ID </td>
+</tr>
+<tr>
+<td> serverId </td>
+<td> TEXT </td>
+<td> 服务端ID </td>
+</tr>
+<tr>
+<td> <b> patientLocalId </b> </td>
+<td> TEXT </td>
+<td> 患者本地ID  </td>
+</tr>
+<tr>
+<td> <b> patientServerId </b> </td>
+<td> TEXT </td>
+<td> 患者ServerID  </td>
+</tr>
+<tr>
+<td> <b> groupLocalId </b> </td>
+<td> TEXT </td>
+<td> 组本地ID  </td>
+</tr>
+<tr>
+<td> <b> groupServerId </b> </td>
+<td> TEXT </td>
+<td> 组 ServerID  </td>
+</tr>
+<tr>
+<td> <b>patientType</b> </td>
+<td> TEXT </td>
+<td> 患者类型。 <b>0:网站患者；1:本地自建患者；</b></td>
+</tr>
+<tr>
+<td> doctorId </td>
+<td> TEXT </td>
+<td> 医生ID </td>
+</tr>
+<tr>
+<td> <b>modifyStatus</b> </td>
+<td> TEXT </td>
+<td> 修改状态。<b>0:无操作；1:新增的；2:修改过的；3:删除的</b></td>
+</tr>
+<tr>
+<td> ... </td>
+<td> ... </td>
+<td> ... </td>
+</tr>
+</table>
+
+#排序规则
+
+##0.患者组排序
+
+**SQL语句:**  
+
+```
+SELECT serverId, name, groupType, sum(patientCnt) patientCnt  
+FROM  (
+SELECT g.ID, g.serverId, g.name, g.groupType, 0 as patientCnt , g.createTime 
+FROM table_NewPatientGroup g 
+WHERE g.doctorId='34974' AND g.modifyStatus!='3' 
+
+UNION
+
+SELECT g.ID, g.serverId, g.name, g.groupType, count(m.patientID) as patientCnt , g.createTime 
+FROM table_NewPatientGroup g 
+INNER JOIN (
+SELECT DISTINCT r.patientLocalId as patientID, r.groupLocalId as groupID 
+FROM table_NewPatientGroupRelation r 
+LEFT JOIN table_NewPatientRelation s 
+ON (r.patientLocalId=s.selfCreatePatientLocalId AND r.modifyStatus!='3') 
+WHERE s.ID IS NULL AND r.patientLocalId !='' AND r.patientLocalId is not null AND r.modifyStatus!='3' AND r.doctorId='34974'
+) m 
+ON m.groupID=g.ID 
+WHERE g.doctorId='34974' AND g.modifyStatus!='3' 
+GROUP BY g.ID
+) 
+GROUP BY ID 
+ORDER BY groupType ASC, createTime DESC
+```
+
+**患者组排序规则**
+
+是按照``groupType`` **递增** 和 ``createTime`` **递减** 的规则来排序
+
+**注：**
+>  
+>0.``groupType``为组类型。未分组的``groupType``为1，其他分组的``groupType``为2  
+>
+>1.``createTime``字段，组创建时间。在未分组里面是有的，其他组的``createTime``字段，为空。详见下图：  
+>
+>![](1.png)
+>
+
+
+##1.患者排序
+
+**SQL语句:**
+
+```
+SELECT DISTINCT p.* 
+FROM table_NewPatient p 
+INNER JOIN table_NewPatientGroupRelation g 
+ON g.patientLocalId=p.ID 
+LEFT JOIN table_NewPatientRelation r 
+ON ((r.webCreatePatientLocalId=p.ID OR r.selfCreatePatientLocalID=p.ID) AND r.modifyStatus!='3') 
+WHERE g.doctorId='34974' AND g.groupLocalId='111' AND g.modifyStatus!='3' AND p.modifyStatus!='3' AND r.ID IS NULL 
+
+UNION
+
+SELECT DISTINCT p.* 
+FROM table_NewPatientRelation r 
+INNER JOIN table_NewPatientGroupRelation g 
+ON g.patientLocalId=r.webCreatePatientLocalId 
+INNER JOIN table_NewPatient p 
+ON p.ID = r.selfCreatePatientLocalId 
+WHERE  g.patientLocalId !='' AND g.patientLocalId IS NOT NULL AND g.groupLocalId='111' AND g.modifyStatus!='3' AND p.modifyStatus!='3' AND r.modifyStatus!='3' AND p.doctorId='34974' 
+ORDER BY p.isFocus DESC, p.createTime DESC 
+LIMIT 100 OFFSET 0;
+```
+
+**患者排序规则:**
+
+是按照``isFocus`` **递减** 和 ``createTime`` **递减** 的规则来排序
+
+**注：**
+>  
+>0.``isFocus``表示患者是否为重点患者，只有0，1两种状态。重点患者的``isFocus ``为1，非重点患者的``isFocus ``为 0  
+>
+>1.``createTime``字段，患者创建时间。  
