@@ -30,8 +30,8 @@ let say = "Your gender is" + gender //出错：可空类型‘String？’无法
 
 ```
 if someOptional != nil{
-let someValue = someOptional!
-//正常使用someValue
+	let someValue = someOptional!
+	//正常使用someValue
 }
 ```
 
@@ -39,7 +39,7 @@ let someValue = someOptional!
 
 ```
 if let someValue = someOptional{
-//正常使用someValue
+	//正常使用someValue
 }
 ```
 
@@ -47,35 +47,35 @@ if let someValue = someOptional{
 
 ```
 func maxValue<T: comparable>(lhs: T, rhs: T) -> T {
-if lhs > rhs{
-return lhs
-}
+	if lhs > rhs{
+		return lhs
+	}
 
-return rhs
+	return rhs
 }
 ```
 
-上面的代码中，生命了一个新的函数，并将其命名为maxValue，与一般的函数不同，在参数列表前面women使用了一个<T: Comparable>,这表明我们正在定义一个泛型函数。<T: Comparable>告诉表一起，这个函数要使用一个泛型T，同时T必须实现Comparable协议（该协议定义了运算符函数，运算会在这个函数中用到）。  
+上面的代码中，声明了一个新的函数，并将其命名为 ``maxValue``，与一般的函数不同，在参数列表前面我们使用了一个 ``<T: Comparable>``,这表明我们正在定义一个泛型函数。``<T: Comparable>``说明这个函数要使用一个泛型 ``T`` ，同时 ``T`` 必须实现 ``Comparable`` 协议（该协议定义了运算符函数，运算会在这个函数中用到）。  
 
-6.Swift标准库的许多函数和类都使用了泛型。Array和Dictionary就是两个泛型集合。  
+6.Swift 标准库的许多函数和类都使用了泛型。``Array`` 和 ``Dictionary`` 就是两个泛型集合。  
 
 7.编译器有时也无法推断出正确的类型信息，这时你可以显式指明值的类型，比如：
 
 ```
 protocol Speaks{
-func speak() -> String
+	func speak() -> String
 }
 
 struct Duck: Speaks{
-func speak() -> String{
-return "quack"
-}
+	func speak() -> String{
+		return "quack"
+	}
 }
 
 struct Dog: Speaks{
-func speak() -> String{
-return "bark"
-}
+	func speak() -> String{
+		return "bark"
+	}
 }
 
 let fido = Dog()
@@ -87,7 +87,7 @@ let pets = [fido, donald] //错误：无法恒却判断出数组的类型
 let pets: [Speaks] = [fido, donald] 
 ```
 
-8.闭包提供了一种创建自包含代码片段的函数式方法，同时还能从上下文中自动捕获值。闭包一次取义于“从上下文中捕获变量常量”，即”封闭“值的意思。Swift的闭包类似Objective-C中的块（block），只不过在使用上更加灵活。  
+8.闭包提供了一种创建自包含代码片段的函数式方法，同时还能从上下文中自动捕获值。闭包一次取义于"从上下文中捕获变量常量"，即"封闭"值的意思。Swift的闭包类似Objective-C中的块（block），只不过在使用上更加灵活。  
 
 9.闭包有三种不同的形式：全局函数、嵌套函数、闭包表达式，每一种都有各自的用途。
 
@@ -96,20 +96,20 @@ let pets: [Speaks] = [fido, donald]
 ```
 var aFewNumbers = [1, 2, 3]  
 var squares = aFewNumbers.map({ (num: Int) -> Int in 
-return num * num
+	return num * num
 })
 //squares = [1, 4, 9]
 
 ```
 
-11.Swift中的元组，是一种轻巧实用的数据结构，允许你将多个值结合成一个对象。  
+11.Swift 中的元组，是一种轻巧实用的数据结构，允许你将多个值结合成一个对象。  
 
 12.要访问元组的成员，你可以通过索引或者将远足分解到多个变量中。例如：
 
 ```
 let iceCreamCone = (2, "chocolate", "cone")
 
-println("I'd like \(iceCreamCone.0) scoop(s) of \(iceCream.1) in a \(iceCreamCone.2)")
+print("I'd like \(iceCreamCone.0) scoop(s) of \(iceCreamCone.1) in a \(iceCreamCone.2)")
 ```
 
 13.也可以在创建元组时，为每个成员进行命名，以便通过名称来访问元组成员，这种方法能清楚的描述元组所储存的数据，对于简单的类，可以直接用元组代替。  
@@ -117,7 +117,7 @@ println("I'd like \(iceCreamCone.0) scoop(s) of \(iceCream.1) in a \(iceCreamCon
 ```
 let iceCreamCone = (scoops:2, flavor:"chocolate", style:"cone")
 
-println("I'd like \(iceCreamCone.scoops) scoop(s) of \(iceCream.flavor) in a \(iceCreamCone.style)")
+println("I'd like \(iceCreamCone.scoops) scoop(s) of \(iceCreamCone.flavor) in a \(iceCreamCone.style)")
 ```
 
 14.返回值可以指定名称也可以不指定名称：
@@ -135,33 +135,32 @@ func numberCounts(nums: [Int]) -> (even: Int, odd: Int)
 
 ```
 func colorForIndexPath(indexPath: NSIndexPath) -> UIColor {
-switch (indexPath.section){
-case 0:
-fallthrough
-case 2:
-fallthrough
-case 4:
-return UIColor.blueColor()
-default:
-return UIColor.whiteColor()
-
-}
+	switch (indexPath.section){
+		case 0:
+			fallthrough
+		case 2:
+			fallthrough
+		case 4:
+			return UIColor.blueColor()
+		default:
+			return UIColor.whiteColor()
+	}
 }
 ```
 
-17.在case中实用where子句，这为switch语句提供了更多的灵活性。你还可以在case语句中使用值banding，从而使代码更加紧凑，可读性更好。如：  
+17.在 ``case`` 中实用 ``where`` 子句，这为 ``switch`` 语句提供了更多的灵活性。你还可以在 ``case`` 语句中使用值绑定，从而使代码更加紧凑，可读性更好。如：  
 
 ```
 let indexSizeAndValue = (9, 10, "")
 switch indexSizeAndValue{
-case (0,_,let value):
-println("The first value is \(value)")
-case let (index,size,"") where index == (size - 1):
-println("The last value is empty")
-case let (index,size,value) where index == (size-1):
-println("The last value is \(value)")
-case let (index,_,value):
-println("The value at index \(index) is \(value)")
+	case (0,_,let value):
+		print("The first value is \(value)")
+	case let (index,size,"") where index == (size - 1):
+		print("The last value is empty")
+	case let (index,size,value) where index == (size-1):
+		print("The last value is \(value)")
+	case let (index,_,value):
+		print("The value at index \(index) is \(value)")
 }
 ```
 
