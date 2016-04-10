@@ -10,7 +10,7 @@ categories: iOS
 
 实现的效果如下：
 
-![](/images/custom_refresh_2/1.gif)
+![1](/images/custom_refresh_2/1.gif)
 
 ##下拉刷新原理
 
@@ -145,7 +145,7 @@ override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
 
 其实就是沿着一定的路径进行旋转，使用CAKeyframeAnimation的path属性按照响应的贝塞尔曲线旋转。如下图：  
 
-/images/custom_refresh_2/2.gif
+![2](/images/custom_refresh_2/2.gif)
 
 ```
 //设置界面
@@ -203,7 +203,7 @@ func settingUI(){
 
 有三个Layer，第一个Layer动画（放大、改变颜色）结束后（使用animationDidStop协议方法），开始第二个动画然后依次类推。如下图：
 
-![](/images/custom_refresh_2/3.gif)
+![3](/images/custom_refresh_2/3.gif)
 
 ```
 var circleShapeLayer1 = CAShapeLayer()

@@ -268,6 +268,20 @@ var increment = makeIncrementer()
 increment(7)
 ```
 
+返回多个参数函数为：  
+
+```
+func makeIncrementer() -> ((Int,Int) -> Int) {
+    func addOne(number1: Int,number2: Int) -> Int {
+        return number1 + number2
+    }
+    return addOne
+}
+var increment = makeIncrementer()
+increment(7,8)
+
+```
+
 22.函数也可以当做参数传入另一个函数。
 
 ```

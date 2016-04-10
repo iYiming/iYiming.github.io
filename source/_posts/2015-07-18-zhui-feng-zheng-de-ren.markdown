@@ -6,7 +6,7 @@ comments: true
 categories: 破万卷
 ---
 
-![追风筝的人](images/zhui_feng_zheng_de_ren/1.jpg)
+![追风筝的人](/images/zhui_feng_zheng_de_ren/1.jpg)
 
 好久前就听说过这本小说，一直没有时间读。读完《平凡的世界》，一下子捡起了对小说的热爱，于是一下子买了好几本小说，《追风筝的人》就是其中一本。  
 

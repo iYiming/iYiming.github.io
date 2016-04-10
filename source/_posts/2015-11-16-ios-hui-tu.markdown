@@ -1,0 +1,160 @@
+---
+layout: post
+title: "iOS 绘图"
+date: 2015-11-16 10:10:58 +0800
+comments: true
+categories: iOS
+---
+
+![1](/images/ios-hui-tu/1.jpg)
+
+0.iOS 主要的绘图系统有：
+
+- UIKit  
+
+  UIKit 是最高级的一种绘图系统，它能用于轻松的访问布局、组成、绘图、字体、图片、动画等。可以通过 ``UI`` 前缀来识别 UIKit 元素，比如 ``UIView`` 和 ``UIBezierPath``。``UIKit`` 也扩展 ``NSString`` 来利用方法（比如 ``drawInRect:withAttributes:``）简化文本绘制。
+
+- Core Graphics  
+
+  Core Graphics (也成 Quartz 2D) 除 UIKit 的主要绘图系统，频繁用于绘制自定义视图。Core Graphics 跟 ``UIView`` 和 UIKit 其他部分高度集成。Core Graphics 数据结构和函数可以通过 ``CG`` 前缀来识别。
+
+- Core Animation
+
+  Core Animation **提供了强大的 2D 与 3D 动画服务**。它也与 ``UIView`` 高度集成。
+
+- Core Image  
+
+	Core Image 最早在 iOS 5 中出现。Core Image 提供了非常快的图片过滤方式，比如**切图、锐化、扭曲和其他你能想象的变形效果**。
+- OpenGL ES
+
+	OpenGL ES 主要用来编写高性能游戏（尤其是 3D 游戏），OpenGL ES 是 OpenGL 绘图语言的子集。对于 iOS 的其他应用来说，Core Animation 通常是更好的选择。OpenGL ES在多个平台可兼容。
+
+1.视图绘制周期
+
+```
+progressView.hidden = NO;
+[self doSomethingTimeConsuming];
+progressView.hidden = YES;
+```
+
+第一行（``progressView.hidden = NO``）实际上根本没有作用。
+
+**这行代码不会使进度视图在执行耗时操作的时候显示出来。无论这个方法执行多久，都不会看到视图显示出来。看下图：**
+
+![0](/images/ios-hui-tu/0.jpg)
+
+2.任何**在后台线程修改视图**的尝试都会导致未定义的行为，包括绘制出错或崩溃。
+
+3.绘图总结：
+
+- **iOS 在运行循环中整合所有的绘图请求，并一次将它们绘制出来。**
+
+- **不能在主线程中进行复杂的处理**
+
+- **不能在主线程之外的主视图上下文中绘制。只要不是在主视图上下文中绘制，一些 UIKit 方法是可以在后台线程中使用的。**
+
+4.视图可以通过子视图、图层的 ``drawInContext:`` 或实现视图的 ``drawRect:`` 方法来表现内容。  
+
+5.2D 绘图一般可以拆分成这几个操作：**线条、路径(填充或轮廓形状)、文本、图片、渐变**。
+
+6.UIKit 和 Core Graphics 都使用 “painter” 绘图模式。这意味着每个命令都是依次绘制并在事件循环中在上一次的绘图上叠加内容。在这个模型中顺序是非常重要的，必须从底层开始向上绘制。每次调用 ``drawRect:`` 方法，都要对所有需要的区域进行绘制。在调用 ``drawRect:`` 方法时，绘图“画布”并不受保护。
+
+注：里面好几个地方不明白
+
+**0.从底层开始向上绘制 这句是什么意思？  
+1.在调用 ``drawRect:`` 方法时，绘制“画布”并不受保护 是什么意思？**
+
+
+7.在 iPad 出现之前，大部分自定义绘图只能使用 Core Graphics，因为使用 UIKit 并不能绘制任意形状。在 iPhone OS 3.2 系统中，苹果公司添加了 ``UIBezierPath`` 并使其更易于通过 Objective-C 绘制。UIKit 依然缺乏对线条、渐变、阴影以及一些高级特性（比如控制反锯齿和精确颜色管理）的支持。即便如此，UIKit 如今却是一个非常方便实现大部分常见自定义绘图需要的方式。
+
+绘制矩形最简单的方法是使用 ``UIRectFrame`` 或 ``UIRectFill``，如下代码 所示：
+
+```
+- (void)drawRect:(CGRect) rect{
+ 	[[UIColor redColor] setFill];
+	UIRectFill(CGRectMake(10,10,100,100));
+}
+```
+
+8.UIKit 包含了很多要比它的矩形绘制函数功能强大的绘图命令。它可以通过 ``UIBezierPath`` 绘制任意曲线和线条。贝塞尔曲线是使用了一些触点的线条或曲线的数学表示方式。一般情况下，卡发着并不需要担心自己的数学水平，因为 ``UIBezierPath`` 拥有处理大部分常见路径（线条、弧线、矩形或圆角矩形、椭圆）的简单方法。
+
+9.在 ``drawRect:`` 方法中，UIKit 与 Core Graphics 可以无异常的混用,不过在 ``drawRect:`` 方法之外，你可能会发现使用 Core Graphics 绘制的东西会上下颠倒。
+
+
+10.Core Graphics 使用 Core Foundation 内存管理规则。Core Foundation 对象需要手动保留与释放，即便启用了 ARC。注意 ``CFPathRelease`` 的使用。
+
+```
+CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+CGMutablePathRef path = CGPathCreateMutable();
+
+...
+...
+
+CGContxtAddPath(ctx,path);
+CGPathRelase(path);
+CGContextStrokePath(ctx);
+```
+
+11.上下文 Context
+
+ 1. 在 ``drawRect:`` 方法中,通过 ``UIGraphicGetCurrentContext()``函数，返回当前上下文。
+ 
+ 2. 通过 ``CGBitmapContextCreate()`` 函数，自己创建上下文。需要注意以下地方：
+    - 通过 ``CGBitmapContextCreate()`` 函数，会出现在 14 中说到的上下颠倒问题。是因为：
+ 
+       UIKit 遵循 ULO （Upper-Left Origin，左上角为原点）的坐标系统，而Core Graphics默认使用 LLO（Lower-Left Origin，左下角为原点）的坐标系统。只要使用在 ``drawRect:`` 方法中通过 ``UIGraphicGetCurrentContext`` 返回的上下文，那么一切就正常，因为这个上下文是已经翻转过的。不过使用 ``CGBitmapContextCreate()`` 函数创建自己的上下文，它会以左下角为原点。
+     
+    - 如何翻转？
+
+      ```
+      CGContextTranslateCTM(ctx,0.0f,height);
+      CGContextScaleCTM(ctx,1.0f,-1.0f);
+      ```
+      
+    - 如果想让 UIKit 适应 Core Graphics，变形则应该反过来：
+
+      ```
+      CGContextScaleCTM(ctx,1.0f,-1.0f);
+      CGContextTranslateCTM(ctx,0.0f,height);
+      ```
+      
+12.路径 Path
+
+- 使用 ``UIBezierPath`` 创建。
+   
+```
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    ...
+    ...
+    
+    [path fill];
+    
+```
+
+   或者  
+	
+```
+UIBezierPath *path = [UIBezierPath bezierPath];
+    
+...
+...
+    
+CGContextAddPath(ctx, path.CGPath);
+CGContextFillPath(ctx);    
+```
+	
+	
+- 使用 ``CGMutablePathRef path =  CGPathCreateMutable();`` 创建。
+
+```
+CGMutablePathRef path =  CGPathCreateMutable();
+    
+...
+...
+    
+CGContextAddPath(ctx, path.CGPath);
+CGPathRelase(path);
+CGContextFillPath(ctx); 
+```
