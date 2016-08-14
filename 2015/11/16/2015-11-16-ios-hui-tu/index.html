@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> iOS 绘图 · 一鸣的博客</title><meta name="description" content="iOS 绘图 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">iOS 绘图</h1><div class="post-info">2015年11月16日</div><div class="post-content"><p><img src="/images/ios-hui-tu/1.jpg" alt="1"></p>
+<p>0.iOS 主要的绘图系统有：</p>
+<ul>
+<li><p>UIKit  </p>
+<p>UIKit 是最高级的一种绘图系统，它能用于轻松的访问布局、组成、绘图、字体、图片、动画等。可以通过 <code>UI</code> 前缀来识别 UIKit 元素，比如 <code>UIView</code> 和 <code>UIBezierPath</code>。<code>UIKit</code> 也扩展 <code>NSString</code> 来利用方法（比如 <code>drawInRect:withAttributes:</code>）简化文本绘制。</p>
+</li>
+<li><p>Core Graphics  </p>
+<p>Core Graphics (也成 Quartz 2D) 除 UIKit 的主要绘图系统，频繁用于绘制自定义视图。Core Graphics 跟 <code>UIView</code> 和 UIKit 其他部分高度集成。Core Graphics 数据结构和函数可以通过 <code>CG</code> 前缀来识别。</p>
+</li>
+<li><p>Core Animation</p>
+<p>Core Animation <strong>提供了强大的 2D 与 3D 动画服务</strong>。它也与 <code>UIView</code> 高度集成。</p>
+</li>
+<li><p>Core Image  </p>
+<p>  Core Image 最早在 iOS 5 中出现。Core Image 提供了非常快的图片过滤方式，比如<strong>切图、锐化、扭曲和其他你能想象的变形效果</strong>。</p>
+</li>
+<li><p>OpenGL ES</p>
+<p>  OpenGL ES 主要用来编写高性能游戏（尤其是 3D 游戏），OpenGL ES 是 OpenGL 绘图语言的子集。对于 iOS 的其他应用来说，Core Animation 通常是更好的选择。OpenGL ES在多个平台可兼容。</p>
+</li>
+</ul>
+<p>1.视图绘制周期</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">progressView.hidden = NO;</div><div class="line">[self doSomethingTimeConsuming];</div><div class="line">progressView.hidden = YES;</div></pre></td></tr></table></figure>
+<p>第一行（<code>progressView.hidden = NO</code>）实际上根本没有作用。</p>
+<p><strong>这行代码不会使进度视图在执行耗时操作的时候显示出来。无论这个方法执行多久，都不会看到视图显示出来。看下图：</strong></p>
+<p><img src="/images/ios-hui-tu/0.jpg" alt="0"></p>
+<p>2.任何<strong>在后台线程修改视图</strong>的尝试都会导致未定义的行为，包括绘制出错或崩溃。</p>
+<p>3.绘图总结：</p>
+<ul>
+<li><p><strong>iOS 在运行循环中整合所有的绘图请求，并一次将它们绘制出来。</strong></p>
+</li>
+<li><p><strong>不能在主线程中进行复杂的处理</strong></p>
+</li>
+<li><p><strong>不能在主线程之外的主视图上下文中绘制。只要不是在主视图上下文中绘制，一些 UIKit 方法是可以在后台线程中使用的。</strong></p>
+</li>
+</ul>
+<p>4.视图可以通过子视图、图层的 <code>drawInContext:</code> 或实现视图的 <code>drawRect:</code> 方法来表现内容。  </p>
+<p>5.2D 绘图一般可以拆分成这几个操作：<strong>线条、路径(填充或轮廓形状)、文本、图片、渐变</strong>。</p>
+<p>6.UIKit 和 Core Graphics 都使用 “painter” 绘图模式。这意味着每个命令都是依次绘制并在事件循环中在上一次的绘图上叠加内容。在这个模型中顺序是非常重要的，必须从底层开始向上绘制。每次调用 <code>drawRect:</code> 方法，都要对所有需要的区域进行绘制。在调用 <code>drawRect:</code> 方法时，绘图“画布”并不受保护。</p>
+<p>注：里面好几个地方不明白</p>
+<p><strong>0.从底层开始向上绘制 这句是什么意思？<br>1.在调用 <code>drawRect:</code> 方法时，绘制“画布”并不受保护 是什么意思？</strong></p>
+<p>7.在 iPad 出现之前，大部分自定义绘图只能使用 Core Graphics，因为使用 UIKit 并不能绘制任意形状。在 iPhone OS 3.2 系统中，苹果公司添加了 <code>UIBezierPath</code> 并使其更易于通过 Objective-C 绘制。UIKit 依然缺乏对线条、渐变、阴影以及一些高级特性（比如控制反锯齿和精确颜色管理）的支持。即便如此，UIKit 如今却是一个非常方便实现大部分常见自定义绘图需要的方式。</p>
+<p>绘制矩形最简单的方法是使用 <code>UIRectFrame</code> 或 <code>UIRectFill</code>，如下代码 所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (void)drawRect:(CGRect) rect&#123;</div><div class="line"> 	[[UIColor redColor] setFill];</div><div class="line">	UIRectFill(CGRectMake(10,10,100,100));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>8.UIKit 包含了很多要比它的矩形绘制函数功能强大的绘图命令。它可以通过 <code>UIBezierPath</code> 绘制任意曲线和线条。贝塞尔曲线是使用了一些触点的线条或曲线的数学表示方式。一般情况下，卡发着并不需要担心自己的数学水平，因为 <code>UIBezierPath</code> 拥有处理大部分常见路径（线条、弧线、矩形或圆角矩形、椭圆）的简单方法。</p>
+<p>9.在 <code>drawRect:</code> 方法中，UIKit 与 Core Graphics 可以无异常的混用,不过在 <code>drawRect:</code> 方法之外，你可能会发现使用 Core Graphics 绘制的东西会上下颠倒。</p>
+<p>10.Core Graphics 使用 Core Foundation 内存管理规则。Core Foundation 对象需要手动保留与释放，即便启用了 ARC。注意 <code>CFPathRelease</code> 的使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">CGContextRef ctx = UIGraphicsGetCurrentContext();</div><div class="line"></div><div class="line">CGMutablePathRef path = CGPathCreateMutable();</div><div class="line"></div><div class="line">...</div><div class="line">...</div><div class="line"></div><div class="line">CGContxtAddPath(ctx,path);</div><div class="line">CGPathRelase(path);</div><div class="line">CGContextStrokePath(ctx);</div></pre></td></tr></table></figure>
+<p>11.上下文 Context</p>
+<ol>
+<li><p>在 <code>drawRect:</code> 方法中,通过 <code>UIGraphicGetCurrentContext()</code>函数，返回当前上下文。</p>
+</li>
+<li><p>通过 <code>CGBitmapContextCreate()</code> 函数，自己创建上下文。需要注意以下地方：</p>
+<ul>
+<li><p>通过 <code>CGBitmapContextCreate()</code> 函数，会出现在 14 中说到的上下颠倒问题。是因为：</p>
+<p> UIKit 遵循 ULO （Upper-Left Origin，左上角为原点）的坐标系统，而Core Graphics默认使用 LLO（Lower-Left Origin，左下角为原点）的坐标系统。只要使用在 <code>drawRect:</code> 方法中通过 <code>UIGraphicGetCurrentContext</code> 返回的上下文，那么一切就正常，因为这个上下文是已经翻转过的。不过使用 <code>CGBitmapContextCreate()</code> 函数创建自己的上下文，它会以左下角为原点。</p>
+</li>
+<li><p>如何翻转？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CGContextTranslateCTM(ctx, 0.0f, height);</div><div class="line">CGContextScaleCTM(ctx, 1.0f, -1.0f);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 如果想让 UIKit 适应 Core Graphics，变形则应该反过来：
+
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CGContextScaleCTM(ctx,1.0f,-1.0f);</div><div class="line">CGContextTranslateCTM(ctx,0.0f,height);</div></pre></td></tr></table></figure>
+</code></pre><p>12.路径 Path</p>
+<ul>
+<li>使用 <code>UIBezierPath</code> 创建。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">UIBezierPath *path = [UIBezierPath bezierPath];</div><div class="line"></div><div class="line">...</div><div class="line">...</div><div class="line"></div><div class="line">[path fill];</div></pre></td></tr></table></figure>
+<p>   或者  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">UIBezierPath *path = [UIBezierPath bezierPath];</div><div class="line">    </div><div class="line">...</div><div class="line">...</div><div class="line">    </div><div class="line">CGContextAddPath(ctx, path.CGPath);</div><div class="line">CGContextFillPath(ctx);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用 <code>CGMutablePathRef path =  CGPathCreateMutable();</code> 创建。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">CGMutablePathRef path =  CGPathCreateMutable();</div><div class="line">    </div><div class="line">...</div><div class="line">...</div><div class="line">    </div><div class="line">CGContextAddPath(ctx, path.CGPath);</div><div class="line">CGPathRelase(path);</div><div class="line">CGContextFillPath(ctx);</div></pre></td></tr></table></figure></div></article></div></section><footer><div class="paginator"><a href="/2015/12/14/2015-12-14-python-3-ji-chu/" class="prev">上一篇</a><a href="/2015/11/13/2015-11-13-liang-pian-wen-zhang-ru-he-cheng-wei-geng-hao-de-yuan/" class="next">下一篇</a></div><div class="copyright"><p>© 2014 - 2016 <a href="http://yoursite.com">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
