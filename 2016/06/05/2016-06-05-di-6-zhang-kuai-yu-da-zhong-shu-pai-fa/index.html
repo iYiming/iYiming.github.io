@@ -54,4 +54,14 @@
 <p>为什么？因为 <code>dispatch_sync</code> 是同步的，又在 <code>viewDidLoad</code> 里，所以主线程等待它执行完才能打印“结束“，然而 <code>dispatch_sync</code> 块需要在 <code>dispatch_get_main_queue()</code> 主线程里添加 block <code>^{
     NSLog(@&quot;Hello !&quot;);
   })</code>,因为主线程现在在等待中，所以 Block 永远无法添加进主线程队列中去，互相等待，从而造成死锁。</p>
-</div></article></div></section><footer><div class="paginator"><a href="/2016/06/05/2016-06-05-di-7-zhang-xi-tong-kuang-jia/" class="prev">上一篇</a><a href="/2016/06/05/2016-06-05-di-5-zhang-nei-cun-guan-li/" class="next">下一篇</a></div><div class="copyright"><p>© 2014 - 2016 <a href="http://yoursite.com">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/06/05/2016-06-05-di-7-zhang-xi-tong-kuang-jia/" class="prev">上一篇</a><a href="/2016/06/05/2016-06-05-di-5-zhang-nei-cun-guan-li/" class="next">下一篇</a></div><div data-thread-key="2016/06/05/2016-06-05-di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/" data-title="第 6 章 块与大中枢派发" data-url="http://yoursite.com/2016/06/05/2016-06-05-di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2014 - 2016 <a href="http://yoursite.com">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
