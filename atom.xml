@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://iYiming.me/"/>
   <updated>2016-08-14T13:57:23.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://iYiming.me/</id>
   
   <author>
     <name>iYiming</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>读 《设计中的设计》</title>
-    <link href="http://yoursite.com/2016/08/09/2016-08-09-du-she-ji-zhong-de-she-ji/"/>
-    <id>http://yoursite.com/2016/08/09/2016-08-09-du-she-ji-zhong-de-she-ji/</id>
+    <link href="http://iYiming.me/2016/08/09/2016-08-09-du-she-ji-zhong-de-she-ji/"/>
+    <id>http://iYiming.me/2016/08/09/2016-08-09-du-she-ji-zhong-de-she-ji/</id>
     <published>2016-08-09T05:46:20.000Z</published>
     <updated>2016-08-14T13:57:23.000Z</updated>
     
@@ -69,15 +69,15 @@
     
     </summary>
     
-      <category term="破万卷" scheme="http://yoursite.com/categories/%E7%A0%B4%E4%B8%87%E5%8D%B7/"/>
+      <category term="破万卷" scheme="http://iYiming.me/categories/%E7%A0%B4%E4%B8%87%E5%8D%B7/"/>
     
     
   </entry>
   
   <entry>
     <title>React Native 版本天气查询应用</title>
-    <link href="http://yoursite.com/2016/07/03/2016-07-03-react-native-ban-ben-tian-qi-cha-xun-ying-yong/"/>
-    <id>http://yoursite.com/2016/07/03/2016-07-03-react-native-ban-ben-tian-qi-cha-xun-ying-yong/</id>
+    <link href="http://iYiming.me/2016/07/03/2016-07-03-react-native-ban-ben-tian-qi-cha-xun-ying-yong/"/>
+    <id>http://iYiming.me/2016/07/03/2016-07-03-react-native-ban-ben-tian-qi-cha-xun-ying-yong/</id>
     <published>2016-07-03T13:33:31.000Z</published>
     <updated>2016-07-03T13:42:05.000Z</updated>
     
@@ -96,15 +96,15 @@
     
     </summary>
     
-      <category term="ReactNative" scheme="http://yoursite.com/categories/ReactNative/"/>
+      <category term="ReactNative" scheme="http://iYiming.me/categories/ReactNative/"/>
     
     
   </entry>
   
   <entry>
     <title>React Native 版本 ToDo List</title>
-    <link href="http://yoursite.com/2016/06/20/2016-06-20-react-native-ban-ben-todo-list/"/>
-    <id>http://yoursite.com/2016/06/20/2016-06-20-react-native-ban-ben-todo-list/</id>
+    <link href="http://iYiming.me/2016/06/20/2016-06-20-react-native-ban-ben-todo-list/"/>
+    <id>http://iYiming.me/2016/06/20/2016-06-20-react-native-ban-ben-todo-list/</id>
     <published>2016-06-19T17:19:54.000Z</published>
     <updated>2016-08-12T16:09:23.000Z</updated>
     
@@ -123,15 +123,15 @@
     
     </summary>
     
-      <category term="ReactNative" scheme="http://yoursite.com/categories/ReactNative/"/>
+      <category term="ReactNative" scheme="http://iYiming.me/categories/ReactNative/"/>
     
     
   </entry>
   
   <entry>
     <title>Effective Objective-C 2.0 读书笔记</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-effective-objective_c-2.0-du-shu-bi-ji/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-effective-objective_c-2.0-du-shu-bi-ji/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-effective-objective_c-2.0-du-shu-bi-ji/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-effective-objective_c-2.0-du-shu-bi-ji/</id>
     <published>2016-06-05T03:40:11.000Z</published>
     <updated>2016-08-12T16:10:37.000Z</updated>
     
@@ -145,15 +145,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>第 7 章 系统框架</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-di-7-zhang-xi-tong-kuang-jia/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-di-7-zhang-xi-tong-kuang-jia/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-di-7-zhang-xi-tong-kuang-jia/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-di-7-zhang-xi-tong-kuang-jia/</id>
     <published>2016-06-05T03:34:05.000Z</published>
     <updated>2016-06-05T03:36:31.000Z</updated>
     
@@ -231,15 +231,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>第 6 章 块与大中枢派发</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/</id>
     <published>2016-06-05T03:32:44.000Z</published>
     <updated>2016-08-14T00:46:00.000Z</updated>
     
@@ -309,15 +309,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>第 5 章 内存管理</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-di-5-zhang-nei-cun-guan-li/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-di-5-zhang-nei-cun-guan-li/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-di-5-zhang-nei-cun-guan-li/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-di-5-zhang-nei-cun-guan-li/</id>
     <published>2016-06-05T03:29:20.000Z</published>
     <updated>2016-08-14T00:48:38.000Z</updated>
     
@@ -391,15 +391,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>第 4 章 协议与分类</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-di-4-zhang-xie-yi-yu-fen-lei/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-di-4-zhang-xie-yi-yu-fen-lei/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-di-4-zhang-xie-yi-yu-fen-lei/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-di-4-zhang-xie-yi-yu-fen-lei/</id>
     <published>2016-06-05T03:27:45.000Z</published>
     <updated>2016-06-05T03:28:32.000Z</updated>
     
@@ -423,15 +423,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>第 3 章 接口和 API 设计</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-di-3-zhang-jie-kou-he-api-she-ji/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-di-3-zhang-jie-kou-he-api-she-ji/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-di-3-zhang-jie-kou-he-api-she-ji/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-di-3-zhang-jie-kou-he-api-she-ji/</id>
     <published>2016-06-05T03:25:23.000Z</published>
     <updated>2016-08-14T00:49:48.000Z</updated>
     
@@ -456,15 +456,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>第 2 章 对象、消息、运行时</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-di-2-zhang-dui-xiang-xiao-xi-yun-xing-shi/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-di-2-zhang-dui-xiang-xiao-xi-yun-xing-shi/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-di-2-zhang-dui-xiang-xiao-xi-yun-xing-shi/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-di-2-zhang-dui-xiang-xiao-xi-yun-xing-shi/</id>
     <published>2016-06-05T03:22:07.000Z</published>
     <updated>2016-08-14T00:50:31.000Z</updated>
     
@@ -517,15 +517,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>第 1 章 熟悉 Objective-C</title>
-    <link href="http://yoursite.com/2016/06/05/2016-06-05-di-1-zhang-shou-xi-objective-c/"/>
-    <id>http://yoursite.com/2016/06/05/2016-06-05-di-1-zhang-shou-xi-objective-c/</id>
+    <link href="http://iYiming.me/2016/06/05/2016-06-05-di-1-zhang-shou-xi-objective-c/"/>
+    <id>http://iYiming.me/2016/06/05/2016-06-05-di-1-zhang-shou-xi-objective-c/</id>
     <published>2016-06-05T03:08:45.000Z</published>
     <updated>2016-08-14T00:53:18.000Z</updated>
     
@@ -594,15 +594,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>仿写 RSS 阅读器 Unread 下拉刷新</title>
-    <link href="http://yoursite.com/2016/05/22/2016-05-22-zi-ding-yi-xia-la-shua-xin/"/>
-    <id>http://yoursite.com/2016/05/22/2016-05-22-zi-ding-yi-xia-la-shua-xin/</id>
+    <link href="http://iYiming.me/2016/05/22/2016-05-22-zi-ding-yi-xia-la-shua-xin/"/>
+    <id>http://iYiming.me/2016/05/22/2016-05-22-zi-ding-yi-xia-la-shua-xin/</id>
     <published>2016-05-22T02:26:20.000Z</published>
     <updated>2016-08-12T16:13:02.000Z</updated>
     
@@ -648,15 +648,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>写一个简易视频播放器</title>
-    <link href="http://yoursite.com/2016/05/08/2016-05-08-xie-yi-ge-jian-yi-shi-pin-bo-fang-qi/"/>
-    <id>http://yoursite.com/2016/05/08/2016-05-08-xie-yi-ge-jian-yi-shi-pin-bo-fang-qi/</id>
+    <link href="http://iYiming.me/2016/05/08/2016-05-08-xie-yi-ge-jian-yi-shi-pin-bo-fang-qi/"/>
+    <id>http://iYiming.me/2016/05/08/2016-05-08-xie-yi-ge-jian-yi-shi-pin-bo-fang-qi/</id>
     <published>2016-05-08T15:27:57.000Z</published>
     <updated>2016-08-14T00:54:49.000Z</updated>
     
@@ -705,15 +705,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>阅读 SDWebImage 源码（三）</title>
-    <link href="http://yoursite.com/2016/04/24/2016-04-24-sdwebimage-3/"/>
-    <id>http://yoursite.com/2016/04/24/2016-04-24-sdwebimage-3/</id>
+    <link href="http://iYiming.me/2016/04/24/2016-04-24-sdwebimage-3/"/>
+    <id>http://iYiming.me/2016/04/24/2016-04-24-sdwebimage-3/</id>
     <published>2016-04-24T04:59:08.000Z</published>
     <updated>2016-08-14T00:56:00.000Z</updated>
     
@@ -750,15 +750,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>阅读 SDWebImage 源码（二）</title>
-    <link href="http://yoursite.com/2016/04/24/2016-04-24-sdwebimage-2/"/>
-    <id>http://yoursite.com/2016/04/24/2016-04-24-sdwebimage-2/</id>
+    <link href="http://iYiming.me/2016/04/24/2016-04-24-sdwebimage-2/"/>
+    <id>http://iYiming.me/2016/04/24/2016-04-24-sdwebimage-2/</id>
     <published>2016-04-24T04:59:04.000Z</published>
     <updated>2016-08-14T00:57:54.000Z</updated>
     
@@ -802,15 +802,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>阅读 SDWebImage 源码（一）</title>
-    <link href="http://yoursite.com/2016/04/24/2016-04-24-sdwebimage-1/"/>
-    <id>http://yoursite.com/2016/04/24/2016-04-24-sdwebimage-1/</id>
+    <link href="http://iYiming.me/2016/04/24/2016-04-24-sdwebimage-1/"/>
+    <id>http://iYiming.me/2016/04/24/2016-04-24-sdwebimage-1/</id>
     <published>2016-04-24T04:58:52.000Z</published>
     <updated>2016-08-12T16:15:31.000Z</updated>
     
@@ -853,15 +853,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>iOS 状态栏样式</title>
-    <link href="http://yoursite.com/2016/04/10/2016-04-10-she-zhi-ios-zhuang-tai-lan-yang-shi/"/>
-    <id>http://yoursite.com/2016/04/10/2016-04-10-she-zhi-ios-zhuang-tai-lan-yang-shi/</id>
+    <link href="http://iYiming.me/2016/04/10/2016-04-10-she-zhi-ios-zhuang-tai-lan-yang-shi/"/>
+    <id>http://iYiming.me/2016/04/10/2016-04-10-she-zhi-ios-zhuang-tai-lan-yang-shi/</id>
     <published>2016-04-10T04:07:30.000Z</published>
     <updated>2016-08-12T16:16:10.000Z</updated>
     
@@ -901,15 +901,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>如何做一个自我要求的读者</title>
-    <link href="http://yoursite.com/2016/03/30/2016-03-30-ru-he-zuo-yi-ge-zi-wo-yao-qiu-de-du-zhe/"/>
-    <id>http://yoursite.com/2016/03/30/2016-03-30-ru-he-zuo-yi-ge-zi-wo-yao-qiu-de-du-zhe/</id>
+    <link href="http://iYiming.me/2016/03/30/2016-03-30-ru-he-zuo-yi-ge-zi-wo-yao-qiu-de-du-zhe/"/>
+    <id>http://iYiming.me/2016/03/30/2016-03-30-ru-he-zuo-yi-ge-zi-wo-yao-qiu-de-du-zhe/</id>
     <published>2016-03-29T23:46:58.000Z</published>
     <updated>2016-08-12T16:16:48.000Z</updated>
     
@@ -992,15 +992,15 @@
     
     </summary>
     
-      <category term="破万卷" scheme="http://yoursite.com/categories/%E7%A0%B4%E4%B8%87%E5%8D%B7/"/>
+      <category term="破万卷" scheme="http://iYiming.me/categories/%E7%A0%B4%E4%B8%87%E5%8D%B7/"/>
     
     
   </entry>
   
   <entry>
     <title>Objective-C 代码规范</title>
-    <link href="http://yoursite.com/2016/03/29/2016-03-29-objective-c-dai-ma-gui-fan/"/>
-    <id>http://yoursite.com/2016/03/29/2016-03-29-objective-c-dai-ma-gui-fan/</id>
+    <link href="http://iYiming.me/2016/03/29/2016-03-29-objective-c-dai-ma-gui-fan/"/>
+    <id>http://iYiming.me/2016/03/29/2016-03-29-objective-c-dai-ma-gui-fan/</id>
     <published>2016-03-29T12:19:21.000Z</published>
     <updated>2016-08-14T00:59:38.000Z</updated>
     
@@ -1057,15 +1057,15 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
   
   <entry>
     <title>一个粘性动画的源码分析</title>
-    <link href="http://yoursite.com/2016/03/27/2016-03-27-yi-ge-nian-xing-dong-hua-de-yuan-ma-fen-xi/"/>
-    <id>http://yoursite.com/2016/03/27/2016-03-27-yi-ge-nian-xing-dong-hua-de-yuan-ma-fen-xi/</id>
+    <link href="http://iYiming.me/2016/03/27/2016-03-27-yi-ge-nian-xing-dong-hua-de-yuan-ma-fen-xi/"/>
+    <id>http://iYiming.me/2016/03/27/2016-03-27-yi-ge-nian-xing-dong-hua-de-yuan-ma-fen-xi/</id>
     <published>2016-03-27T02:54:09.000Z</published>
     <updated>2016-08-14T01:00:53.000Z</updated>
     
@@ -1181,7 +1181,7 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://iYiming.me/categories/iOS/"/>
     
     
   </entry>
