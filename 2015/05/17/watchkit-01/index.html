@@ -1,11 +1,12 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> WatchKit(一)：创建一个 Apple Watch 应用 · 一鸣的博客</title><meta name="description" content="WatchKit(一)：创建一个 Apple Watch 应用 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">WatchKit(一)：创建一个 Apple Watch 应用</h1><div class="post-info">2015年5月17日</div><div class="post-content"><p>WatchKit 应用需要一个配套的 iOS 应用。在你的 iOS 应用 Xcode 项目中，你添加了一个新 WatchKit target，Xcode 会自动配置并初始化 WatchKit 应用和 WatchKit 扩展需要的资源。</p>
-<p>WatchKit 应用和 WatchKit 扩展捆绑在一起，打包进 iOS 应用中。当安装 iOS 应用时，系统会提示用户匹配的 Apple Watch 安装相应的 WatchKit应用。</p>
-<p>注意：<br>WatchKit 开发需要 iOS 8.2 SDK 及以后版本。</p>
-<h2 id="0-创建一个-iOS-应用-iWatch"><a href="#0-创建一个-iOS-应用-iWatch" class="headerlink" title="0.创建一个 iOS 应用 iWatch"></a>0.创建一个 iOS 应用 iWatch</h2><p><img src="/images/WatchKit1/WatchKit1_01.png" alt="WatchKit1_01"></p>
-<h2 id="1-添加-Watch-Target"><a href="#1-添加-Watch-Target" class="headerlink" title="1.添加 Watch Target"></a>1.添加 Watch Target</h2><p><img src="/images/WatchKit1/WatchKit1_02.png" alt="WatchKit1_02"><br><img src="/images/WatchKit1/WatchKit1_03.png" alt="WatchKit1_03">  </p>
-<p>选择Next  </p>
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> WatchKit (一)：创建一个 Apple Watch 应用 · 一鸣的博客</title><meta name="description" content="WatchKit (一)：创建一个 Apple Watch 应用 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">WatchKit (一)：创建一个 Apple Watch 应用</h1><div class="post-info">2015年5月17日</div><div class="post-content"><p>WatchKit 应用需要一个配套的 iOS 应用。在你的 iOS 应用 Xcode 项目中，你添加了一个新 WatchKit target，Xcode 会自动配置并初始化 WatchKit 应用和 WatchKit 扩展需要的资源。</p>
+<p>WatchKit 应用和 WatchKit 扩展捆绑在一起，打包进 iOS 应用中。当安装 iOS 应用时，系统会提示用户匹配的 Apple Watch 安装相应的 WatchKit 应用。</p>
+<div class="tip"><br>  WatchKit 开发需要 iOS 8.2 SDK 及以后版本。<br></div>
+
+<h2 id="创建一个-iOS-应用-iWatch"><a href="#创建一个-iOS-应用-iWatch" class="headerlink" title="创建一个 iOS 应用 iWatch"></a>创建一个 iOS 应用 iWatch</h2><p><img src="/images/WatchKit1/WatchKit1_01.png" alt="WatchKit1_01"></p>
+<h2 id="添加-Watch-Target"><a href="#添加-Watch-Target" class="headerlink" title="添加 Watch Target"></a>添加 Watch Target</h2><p><img src="/images/WatchKit1/WatchKit1_02.png" alt="WatchKit1_02"><br><img src="/images/WatchKit1/WatchKit1_03.png" alt="WatchKit1_03">  </p>
+<p>选择 Next  </p>
 <p><img src="/images/WatchKit1/WatchKit1_04.png" alt="WatchKit1_04">  </p>
-<p>选择Finish</p>
+<p>选择 Finish</p>
 <p>创建成功，将会看到如下：</p>
 <p><img src="/images/WatchKit1/WatchKit1_05.png" alt="WatchKit1_05"></p>
 <p>选择iWatch WatchKit App，如下图：</p>
@@ -13,16 +14,16 @@
 <p>选择 Command + R，运行。  </p>
 <p>将会看到如下两个模拟器（iPhone 模拟器，Apple Watch 模拟器，如果没有看到的话选择按照菜单的步骤，来显示Apple Watch 模拟器）：</p>
 <p><img src="/images/WatchKit1/WatchKit1_07.png" alt="WatchKit1_07"></p>
-<h2 id="2-项目框架"><a href="#2-项目框架" class="headerlink" title="2.项目框架"></a>2.项目框架</h2><p><img src="/images/WatchKit1/WatchKit1_08.png" alt="WatchKit1_08">  </p>
+<h2 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h2><p><img src="/images/WatchKit1/WatchKit1_08.png" alt="WatchKit1_08">  </p>
 <p>iWatch WatchKit App：WatchKit 应用，仅包含与 Apple Watch 应用用户界面相关的storyboards和资源文件。<br>iWatch WatchKit Extension：WatchKit 扩展，包含管理 WatchKit 应用用户界面的代码和处理用户的响应。  </p>
 <p>下图显示 WatchKit 应用和 WatchKit 扩展之间如何通讯</p>
 <p><img src="/images/WatchKit1/WatchKit1_09.png" alt="WatchKit1_09"></p>
-<p>Xcode项目结构：  </p>
+<p>Xcode 项目结构：  </p>
 <p><img src="/images/WatchKit1/WatchKit1_10.png" alt="WatchKit1_10"></p>
-<p>iWatch WatchKit App文件夹下：<br>Interface.storyboard 包含所有的 Apple Watch 应用的界面的显示，见下图：<br><img src="/images/WatchKit1/WatchKit1_11.png" alt="WatchKit1_10"></p>
-<p>绿色框中展示 Apple Watch 应用主界面元素。与之对应的.h.m文件是iWatch WatchKit Extension文件夹下的InterfaceController.h 和 InterfaceController.m文件。</p>
+<p>iWatch WatchKit App 文件夹下：<br>Interface.storyboard 包含所有的 Apple Watch 应用的界面的显示，见下图：<br><img src="/images/WatchKit1/WatchKit1_11.png" alt="WatchKit1_10"></p>
+<p>绿色框中展示 Apple Watch 应用主界面元素。与之对应的.h.m文件是iWatch WatchKit Extension 文件夹下的 InterfaceController.h 和 InterfaceController.m 文件。</p>
 <p>黄色框中展示 Apple Watch 通知界面元素。在通知界面上 Apple Watch 应用与 iOS 应用不同，Apple Watch 应用可以自定义界面。与之对应的 .h.m 文件是 iWatch WatchKit Extension 文件夹下的 NotificationController.h 和 NotificationController.m 文件。</p>
-</div></article></div></section><footer><div class="paginator"><a href="/2015/05/17/watchkit-02/" class="prev">上一篇</a><a href="/2015/05/02/flask-web-06/" class="next">下一篇</a></div><div data-thread-key="2015/05/17/watchkit-01/" data-title="WatchKit(一)：创建一个 Apple Watch 应用" data-url="http://iYiming.me/2015/05/17/watchkit-01/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+</div></article></div></section><footer><div class="paginator"><a href="/2015/05/17/watchkit-02/" class="prev">上一篇</a><a href="/2015/05/02/flask-web-06/" class="next">下一篇</a></div><div data-thread-key="2015/05/17/watchkit-01/" data-title="WatchKit (一)：创建一个 Apple Watch 应用" data-url="http://iYiming.me/2015/05/17/watchkit-01/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
