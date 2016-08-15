@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> iOS 9 分享 · 一鸣的博客</title><meta name="description" content="iOS 9 分享 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">iOS 9 分享</h1><div class="post-info">2015年9月17日</div><div class="post-content"><p>公司组织分享iOS 9新特性及适配问题，故整理如下：  </p>
+<p>本次分享，主要包含2个部分：<strong>iOS 9新特性</strong> 和 <strong>细节知识点</strong>。</p>
+<p>关于iOS 9的新特性，该分享仅介绍如下内容：  </p>
+<ol>
+<li><p>Multitasking：多任务</p>
+</li>
+<li><p>Search：搜索</p>
+</li>
+<li><p>App Thinning：App瘦身</p>
+</li>
+</ol>
+<p>细节知识点以<a href="https://github.com/ChenYilong/iOS9AdaptationTips" target="_blank" rel="external">https://github.com/ChenYilong/iOS9AdaptationTips</a>为主。  </p>
+<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><p>关于新特性方面，主要参考<a href="https://developer.apple.com/ios/" target="_blank" rel="external">https://developer.apple.com/ios/</a>官方文档。</p>
+<h4 id="1-Multitasking-多任务"><a href="#1-Multitasking-多任务" class="headerlink" title="1. Multitasking(多任务)"></a>1. Multitasking(多任务)</h4><p>iOS 9 中的多任务分为<strong>3</strong>种表现形式:  </p>
+<blockquote>
+<ol>
+<li><p>Slide Over (临时调出的滑动覆盖) </p>
+</li>
+<li><p>Split View (真正的同时使用两个 App 的分割视图)</p>
+</li>
+<li><p>Picture in Picture (视频播放的画中画模式)   </p>
+</li>
+</ol>
+</blockquote>
+<p><strong><em>1.Slide Over (临时调出的滑动覆盖)</em></strong></p>
+<p>Slide Over功能可以让用户在两个应用之间做到快速切换，该功能可在iPad Air、iPad Air 2、iPad mini 2、iPad mini 3上实现。  </p>
+<blockquote>
+<p>现在，你可以在打开第二个应用的同时不离开原来的应用。这样你可以快速地浏览网页、回复短信、或是在备忘录中写点什么。然后向右滑动，你就会又返回到原来你所使用的应用。</p>
+</blockquote>
+<p>效果如下：  </p>
+<p><img src="/images/iOS9-Share/1.jpg" alt="Slide Over"></p>
+<p><strong><em>2.Split View (真正的同时使用两个 App 的分割视图)</em></strong></p>
+<p>可将屏幕分成两部分，同时运行两个应用。也支持同一款应用的多界面，比如 Safari 浏览器中可并排摆放两个标签页。此功能目前只能在iPad Air 2上实现。  </p>
+<blockquote>
+<p>在你的 iPad Air 2 上使用Split View，你可以在自由操作Apps上走的更远，有两个充满活力的Apps同时活跃在一个时间里。你可以在工作草图旁打开参考照片、你可以在写一篇论文的同时在iBooks中引用一本书的内容。当所有你所需要的东西摆在你面前时，你会更加集中注意。</p>
+</blockquote>
+<p>效果如下：  </p>
+<p><img src="/images/iOS9-Share/2.jpg" alt="Slide Over"></p>
+<p><strong><em>3.Picture in Picture (视频播放的画中画模式)</em></strong></p>
+<p>Picture in Picture功能：用户在看视频过程中如果想看或回邮件，视频将以悬浮窗口的形式保留在屏幕上，大小和位置可任意调整。  </p>
+<blockquote>
+<p>在使用FaceTime或是观看视频时，请按Home键，你的视频就会缩小到屏幕的一个角落。打开第二个应用，即使你在使用其他应用，FaceTime中家人的笑脸依旧呈现，你的视频依旧播放。所以，在你收看你最喜欢的电视节目时，回复刚刚收到的电子邮件。</p>
+</blockquote>
+<p>效果如下：  </p>
+<p><img src="/images/iOS9-Share/3.jpg" alt="Slide Over"></p>
+<p>注：  </p>
+<ol>
+<li><p>因为苹果使用的是iOS 8提供的<strong>Size Classes</strong>来支持多任务，看来以后我们离不开Storyboard啦。</p>
+</li>
+<li><p>对于Picture in Picture(画中画)，需要注意是：  </p>
+<p><strong>如果你使用 AVPlayerViewController 或者 AVPlayerLayer 来播放视频的话，那什么都不用做就已经支持了。但如果你之前选择的方案是 MPMoviePlayerController 或者 MPMoviePlayerViewController 的话，你可能也需要尽早迁移到 AVKit 的框架下来，因为 Media Player 将在 iOS 9 被标记为 deprecated 并不再继续维护。</strong></p>
+</li>
+</ol>
+<h3 id="2-Search-搜索"><a href="#2-Search-搜索" class="headerlink" title="2. Search(搜索)"></a>2. Search(搜索)</h3><p>关于<a href="https://developer.apple.com/ios/search/" target="_blank" rel="external">搜索API</a></p>
+<p>看下面的文章就够了：  </p>
+<p><a href="http://www.jianshu.com/p/f9bd0404d901" target="_blank" rel="external">http://www.jianshu.com/p/f9bd0404d901</a></p>
+<h3 id="3-App-Thinning-App瘦身"><a href="#3-App-Thinning-App瘦身" class="headerlink" title="3. App Thinning(App瘦身)"></a>3. App Thinning(App瘦身)</h3><p>iOS App Thinning表现为3个部分：</p>
+<blockquote>
+<ol>
+<li><p>App Slicing</p>
+</li>
+<li><p>Bitcode </p>
+</li>
+<li><p>On-Demand Resources</p>
+</li>
+</ol>
+</blockquote>
+<p><strong><em>1.App Slicing</em></strong></p>
+<p>现在在 AppStore 下载 App 问题：</p>
+<blockquote>
+<ol>
+<li><p>因为 iOS App 为了后向兼容，现在都同时包含了 32 bit 和 64 bit 两个 slice。 </p>
+</li>
+<li><p>在图片资源方面，更是存在 1x 2x 3x 的图像（1x现在不太需要了，推荐大家使用pdf，矢量图就一套） </p>
+</li>
+</ol>
+</blockquote>
+<p>上面的两个问题导致现在的 App 体积剧增。在购买和下载的时候，又是把整个 App 包都下载，浪费流量等资源。于是苹果在 iOS 9 中使用 App Slicing。</p>
+<p>使用了 App Slicing 后，节省了用户流量的同时，对于开发者来说，不需要做太多事情，只需要使用asset catalog 标记好 2x 3x 就可以了。</p>
+<p>其他的任务，都是AppStore帮咱们处理，如下图：</p>
+<p><img src="/images/iOS9-Share/4.png" alt="App Slicing"></p>
+<p><strong><em>2. Bitcode</em></strong></p>
+<p>原来我们是通过 Xcode 提交二进制文件到AppStore，这样就会出现这样一个问题——当编译器更新时，我们必须重新编译一遍再提交到 AppStore 。但是出现了Bitcode后，我们就不在需要再重复这样的操作。  </p>
+<p>Bitcode 是 LLVM 的中间码。在用户下载之前，App Store 在自动编译应用程序。   </p>
+<p>Bitcode 支持在新项目中是默认开启的，没有特别理由的话，你也不需要将它特意关掉。  </p>
+<p><strong><em>3.On-Demand Resources</em></strong></p>
+<p>这个在游戏中用的比较多，听名字就能够看出，按需加载资源。在你需要的时候再下载响应的图片。  </p>
+<p>例如：你在游戏中每个关卡的时候只下载这一关卡的资源。是不是会出现这种问题，你在路上空闲时间玩游戏，到了下一关卡，资源还没有下载，那就不能玩了。  </p>
+<h2 id="细节知识点"><a href="#细节知识点" class="headerlink" title="细节知识点"></a>细节知识点</h2><p>0.如何适配iOS9：  </p>
+<p><a href="https://github.com/ChenYilong/iOS9AdaptationTips" target="_blank" rel="external">https://github.com/ChenYilong/iOS9AdaptationTips</a></p>
+<p>1.iOS 9 day by day中文翻译：  </p>
+<p><a href="http://www.jianshu.com/p/3768b9c65974" target="_blank" rel="external">http://www.jianshu.com/p/3768b9c65974</a></p>
+<p>2.开发者所需要知道的 iOS 9 SDK 新特性：  </p>
+<p><a href="http://onevcat.com/2015/06/ios9-sdk/" target="_blank" rel="external">http://onevcat.com/2015/06/ios9-sdk/</a>  </p>
+<p>3.观看WWDC:  </p>
+<p><a href="https://github.com/insidegui/WWDC" target="_blank" rel="external">https://github.com/insidegui/WWDC</a>  </p>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/10/12/deng_xiao_ping_shi_dai/" class="prev">上一篇</a><a href="/2015/09/01/xie-gei-da-mang-ren-kan-de-swift-er/" class="next">下一篇</a></div><div data-thread-key="2015/09/17/ios-9-fen-xiang/" data-title="iOS 9 分享" data-url="http://iYiming.me/2015/09/17/ios-9-fen-xiang/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2014 - 2016 <a href="http://iYiming.me">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253468447'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s6.cnzz.com/z_stat.php%3Fid%3D1253468447%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></body></html>

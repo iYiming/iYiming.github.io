@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 第 7 章 系统框架 · 一鸣的博客</title><meta name="description" content="第 7 章 系统框架 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">第 7 章 系统框架</h1><div class="post-info">2016年6月5日</div><div class="post-content"><p><img src="/images/effective_objectivec_2.0/1.jpg" alt="1.jpg"></p>
+<p>0.CoreFoundation 与 Foundation 不仅名字相似，而且还有更为紧密的联系。Foundation 框架中的许多功能，都可以在此框架中找到对应的 C 语言 API。有个功能佳作“无缝桥接”（tollfree bridging），可以把 CoreFoundation 中的 C 语言数据结构平滑转换为 Foundation 中的 Objective-C 对象，也可以反向旋转。</p>
+<p>1.ARC 下只考虑 Objective-C 对象的内存，对于非 Objective-C 对象，比如 CoreFoundation 中的需要自己考虑内存管理问题。</p>
+<p>2.Objective-C 编程的一项重要特点，那就是：经常需要使用底层的 C 语言级 API。用  C 语言来实现 API 的好处是，可以绕过 Objective-C 的运行期系统，从而提升执行速度。</p>
+<p>3.多用块枚举，少用 for 循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[array enumerateObjectsUsingBlock:^(NSString *  _Nonnull name, NSUInteger idx, BOOL * _Nonnull stop) &#123;</div><div class="line"></div><div class="line">	...</div><div class="line">	</div><div class="line">	if ([name isEqualToString:@&quot;Tom&quot;]) &#123;</div><div class="line">		stop = YES;</div><div class="line">	&#125;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>4.块枚举优点：</p>
+<ul>
+<li>遍历时可以直接从块里获取更多信息。在遍历数组时，可以知道当前所针对的下标。</li>
+<li>能够修改块的方法签名，以免进行类型转换操作。从效果上讲，相当于把本来需要执行的类型转换操作交给方法签名来做。</li>
+</ul>
+<p>5.Core Foundation 与 Foundation 内存问题</p>
+<p><code>__bridge</code> 什么也不做，仅仅是转换。此种情况下：  </p>
+<ol>
+<li>从 Cocoa 转换到 Core，需要人工 <code>CFRetain</code>，否则，Cocoa 指针释放后， 传出去的指针则无效。</li>
+<li>从 Core 转换到 Cocoa，需要人工 <code>CFRelease</code>，否则，Cocoa 指针释放后，对象引用计数仍为1，不会被销毁。</li>
+</ol>
+<p><code>__bridge_retained</code> 转换后自动调用 <code>CFRetain</code>，即帮助自动解决上述 1 的情形。</p>
+<p><code>__bridge_transfer</code> 转换后自动调用 <code>CFRelease</code>，即帮助自动解决上述 2 的情形。  </p>
+<ul>
+<li><code>__bridge</code> 用法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *string = [NSString stringWithFormat:...];</div><div class="line">CFStringRef cfString = (__bridge CFStringRef)string;</div></pre></td></tr></table></figure>
+<p>只是单纯地执行了类型转换，没有进行所有权的转移，也就是说，当 <code>string</code> 对象被释放的时候，<code>cfstring</code> 也不能被使用了。</p>
+<ul>
+<li><code>__bridge_retained</code> 用法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">NSString *string = [NSString stringWithFormat:...];</div><div class="line">CFStringRef cfString = (__bridge_retained CFStringRef)string;</div><div class="line">...</div><div class="line">CFRelease(cfString); // 由于Core Foundation的对象不属于ARC的管理范畴，所以需要自己release</div></pre></td></tr></table></figure>
+<p>使用 <code>__bridge_retained</code> 可以通过转换目标处（ <code>cfString</code> ）的 <code>retain</code> 处理，来使所有权转移。即使 <code>string</code> 变量被释放，<code>cfString</code> 还是可以使用具体的对象。只是有一点，由于 Core Foundation 的对象不属于 ARC 的管理范畴，所以需要自己 <code>release</code>。</p>
+<p>可以用 <code>CFBridgingRetain</code> 替代 <code>__bridge_retained</code> 关键字：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">NSString *string = [NSString stringWithFormat:...];</div><div class="line">CFStringRef cfString = CFBridgingRetain(string);</div><div class="line">...</div><div class="line">CFRelease(cfString); // 由于Core Foundation不在ARC管理范围内，所以需要主动release。</div></pre></td></tr></table></figure>
+<ul>
+<li><code>__bridge_transfer</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CFStringRef cfString = CFStringCreate...();</div><div class="line">NSString *string = (__bridge_transfer NSString *)cfString;</div><div class="line"> </div><div class="line">// CFRelease(cfString); 因为已经用 __bridge_transfer 转移了对象的所有权，所以不需要调用 release</div></pre></td></tr></table></figure>
+<p>所有权被转移的同时，被转换变量将失去对象的所有权。当 Core Foundation 对象类型向Objective-C 对象类型转换的时候，会经常用到 <code>__bridge_transfer</code> 关键字。</p>
+<p>同样，我们可以使用 <code>CFBridgingRelease()</code> 来代替 <code>__bridge_transfer</code> 关键字。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CFStringRef cfString = CFStringCreate...();</div><div class="line">NSString *string = CFBridgingRelease(cfString);</div></pre></td></tr></table></figure>
+<p>6.<code>NSCache</code> VS <code>NSDictionary</code></p>
+<ul>
+<li><code>NSCache</code> 胜过 <code>NSDictionary</code> 之处在于，当系统资源将要耗尽时，它可以自动删减缓存。如果采用普通的字典，那么就要自己编写挂钩，在系统发出“低内存”通知时手工删减缓存。</li>
+<li><code>NSCache</code>还会先行删减 “最久未使用”对象。</li>
+<li><code>NSCache</code>并不会拷贝键，而是会保留它。</li>
+<li><code>NSCache 是线程安全的，而</code>NSDictionary`` 则绝对不具备此优势。</li>
+</ul>
+<p>7.只有那种“重新计算起来很费事的”数据，才值得放入缓存，比如那些需要从网络获取或从磁盘获取的数据。</p>
+<p>8.<code>+ (void)load</code> 方法</p>
+<ul>
+<li><code>+ (void)load</code>，对于加入运行期系统的每个类以及分类来说，必定会调用此方法，而且仅调用一次。当包含类或分类的程序库载入系统时，就会执行此方法，而这通常就是指应用程序启动的时候，若程序是为 iOS 平台设计的，则肯定会在此时执行。</li>
+<li>在 <code>load</code> 方法中使用其他类是不安全的。</li>
+<li><code>load</code> 方法并不像普通的方法那样，它并不遵从那套继承规则。分类和所属的类里，都可能出现 load 方法。此时两种实现代码都会调用，类的实现要比分类的实现先执行。</li>
+<li><code>load</code> 方法务必实现得精简些，也就是要尽量减少其所执行的操作，因为整个应用程序在执行 <code>load</code> 方法时都会阻塞。</li>
+</ul>
+<p>9.<code>+ (void)initialize</code> 方法</p>
+<ul>
+<li>对于每个类来说，该方法会在程序首次用该类之前调用，且只调用一次。它是惰性调用的，只有程序用到了相关的类时，才会调用。</li>
+<li>此方法与 <code>+ (void)load</code>方法不同的是，运行期系统在执行该方法时，是处于正常状态的，因此，从运行期系统完整度上来讲，此时可以完全使用并调用任意类中的任意方法。</li>
+<li><code>+ (void) initialize</code> 方法与其他消息一样，如果某个类未实现它，而其超类实现了，那么就会运行超类实现的代码。</li>
+</ul>
+<p>10.<code>NSTimer</code> 会保留其目标对象。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#import &quot;YMTimerCircularReferenceViewController.h&quot;</div><div class="line"></div><div class="line">@interface YMTimerCircularReferenceViewController ()</div><div class="line"></div><div class="line">@property (nonatomic, strong) NSTimer *timer;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation YMTimerCircularReferenceViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    </div><div class="line">    self.timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(timerSelector) userInfo:nil repeats:YES];</div><div class="line">    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)timerSelector &#123;</div><div class="line">    NSLog(@&quot;%@&quot;,[NSDate date]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)dealloc &#123;</div><div class="line">    NSLog(@&quot;YMTimerCircularReferenceViewController dealloc&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当 <code>YMTimerCircularReferenceViewController</code> pop 时，上面的 <code>dealloc</code>方法不被调用。</p>
+<p>解决办法，加一个 NSTimer 类别：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#import &quot;NSTimer+YMBlock.h&quot;</div><div class="line"></div><div class="line">@implementation NSTimer (YMBlock)</div><div class="line"></div><div class="line">+ (NSTimer * _Nonnull)ym_timerWithTimeInterval:(NSTimeInterval)ti block:(nullable void (^)())block userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo &#123;</div><div class="line">    return [self timerWithTimeInterval:ti target:self selector:@selector(ym_blockInvoke:) userInfo:[block copy] repeats:yesOrNo];</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (void)ym_blockInvoke:(NSTimer *)timer &#123;</div><div class="line">    void (^block)() = timer.userInfo;</div><div class="line">    </div><div class="line">    if (block) &#123;</div><div class="line">        block();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>注：此处虽然依然有保留换，<code>self</code> 引用 <code>self</code>，因为是类对象，无须回收。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/06/05/effective-objective_c-2.0-du-shu-bi-ji/" class="prev">上一篇</a><a href="/2016/06/05/di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/" class="next">下一篇</a></div><div data-thread-key="2016/06/05/di-7-zhang-xi-tong-kuang-jia/" data-title="第 7 章 系统框架" data-url="http://iYiming.me/2016/06/05/di-7-zhang-xi-tong-kuang-jia/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2014 - 2016 <a href="http://iYiming.me">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253468447'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s6.cnzz.com/z_stat.php%3Fid%3D1253468447%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></body></html>

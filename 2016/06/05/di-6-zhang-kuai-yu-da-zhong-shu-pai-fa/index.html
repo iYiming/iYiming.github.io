@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 第 6 章 块与大中枢派发 · 一鸣的博客</title><meta name="description" content="第 6 章 块与大中枢派发 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">第 6 章 块与大中枢派发</h1><div class="post-info">2016年6月5日</div><div class="post-content"><p><img src="/images/effective_objectivec_2.0/1.jpg" alt="1.jpg"></p>
+<p>0.如果块所捕获的变量是对象类型，那么就会自动保留它。系统在释放这个块的时候，也会将其一并释放。</p>
+<p>1.如果将块定义在 Objective-C 类的实例方法中，那么除了可以访问类的所有实例变量之外，还可以使用 <code>self</code> 变量。块总能修改实例变量。所以在声明时无须加 <code>__block</code>。不过，如果通过读取或写入操作捕获了实例变量，那么也会自动把 <code>self</code> 变量一并捕获了，因为实例变量是与 <code>self</code> 所只带的实例关联在一起的。</p>
+<p>2.在 block 中 直接访问实例变量和通过 <code>self</code> 来访问是等效的。</p>
+<p>3.一定要记住：<code>self</code> 也是个对象，因而快在捕获它时也会将其保留。如果 <code>self</code> 所指点的那个对象同时也保留了块，那么这种情况通常就会导致“保留环”。</p>
+<p>4.除了 “栈块” 和 “堆块”之外，还有一类块叫做 “全局块”（global block）。这种块不会捕捉任何状态（比如外围的变量等），运行时也无须有状态来参与。块所使用的整个内存区域，在编译期已经完全确定了，因此，全局块可以生命在全局内存里，而不需要在每次用到的时候于栈中创建。另外，全局块的拷贝操作是个空操作，因为全局块决不可能为系统所回收。这种块实际上相当于单例。</p>
+<p>下面两种方式都是全局块（global block）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">void (^myFirstBlock)() = ^&#123;</div><div class="line">    NSLog(@&quot;123&quot;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">void (^mySecondBlock)(int a,int b) = ^(int a,int b)&#123;</div><div class="line">    NSLog(@&quot;a + b = %@&quot;,@(a + b));</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>5.以 <code>typedef</code> 重新定义块类型，可令块变量用起来更加简单。</p>
+<p>6.不妨为同一个块签名定义多个类型别名。如果要重构的代码使用了块类型的某个别名，那么只需修改相应 <code>typedef</code> 中的块签名即可，无须改动其他 <code>typedef</code>。</p>
+<p>7.与使用委托模式的代码相比，用块写出来的代码更为整洁。委托模式有个缺点：如果类要分别使用多个获取器下载不同数据，那么就得在 <code>delegate</code> 回调方法里根据传入的获取器参数来切换。</p>
+<p>8.建议使用同一个块来处理成功与失败情况，苹果公司似乎也是这样设计 API 的。</p>
+<p>9.如果块所捕获的对象直接或间接地保留了块本身，那么就得当心保留环问题。一定要找个适当的时机解除保留环，而不能把责任推给 API 的调用者。</p>
+<p>10.在 Objective-C 中，如果有多个线程要执行同一份代码，那么有时可能会出现问题。这种情况下，通常要使用锁来实现某种同步机制。在 GCD 出现之前，有两种办法:</p>
+<ul>
+<li>内置的 <code>@synchronize</code></li>
+<li>使用 <code>NSLock</code> 对象</li>
+</ul>
+<p>11.滥用 <code>@synchronized(self)</code> 则会降低代码效率，因为共用同一个锁的那些同步块，都必须按顺序执行。若是在 <code>self</code> 对象上频繁枷锁，那么程序可能要等另一段于此无关的代码执行完毕，才能继续执行当前代码，这样做其实并没有必要。在极端情况下，<code>@synchronize</code> 块会导致死锁，另外，其效率也不见得很高。</p>
+<p>12.派发队列可用来表述同步寓意，这样做法要比使用 <code>@synchronized</code> 块或 <code>NSLock</code> 对象更简单。</p>
+<p>13.有种简单高效的办法可以代替同步块或锁对象，那就是使用“串行同步队列”。 </p>
+<p>14.如果将串行同步队列改为串行异步队列，貌似看起来效率更高些，但这么改动有个坏处：如果你测一下程序性能，那么可能会发现这种写法比原来慢，因为执行异步派发时，需要拷贝块。若拷贝块所用的时间明显超过执行块所花的实现，则这种做法将比原来更慢。</p>
+<p>15.多个获取方法可以并发执行，而获取方法与设置方法之间不能并发执行，利用这个特点，还能写出更快一些的代码块。利用<code>dispatch_brarrier_async</code>，我们可以使用并行队列。并发队列如果发现接下来要处理的块是个栅栏块。待栅栏块执行过后，再按正常方式继续向下处理。</p>
+<p>16.多用 GCD，少用 <code>performSelector</code>。</p>
+<p>17.使用 <code>performSelector</code>,编译器并不知道将要调用的选择子是什么，因此，也就不了解其方法签名及返回值，甚至连是否有返回值都不清楚。而且，由于编译器不知道方法名，所以就没办法运用 ARC 的内存管理规则来判定返回值是不是应该释放。鉴于此，ARC 采用了比较谨慎的做法，就是不添加释放操作。然而这么做可能导致内存泄漏，因为方法在返回对象时可能已经将其保留了。</p>
+<p>18.延后执行可以用 <code>dispatch_after</code> 来实现。</p>
+<p>19.GCD VS NSOperation</p>
+<p>GCD 的优点：</p>
+<ul>
+<li>GCD 提供的 <code>dispatch_after</code> 支持调度下一个操作的开始时间而不是直接进入睡眠。</li>
+<li><code>NSOperation</code> 中没有类似<code>dispatch_source_t</code>, <code>dispatch_io,dispatch_data_t</code>, <code>dispatch_semaphore_t</code> 等操作。  </li>
+</ul>
+<p><code>NSOperation</code> 的优点：</p>
+<ul>
+<li>GCD 没有操作依赖。我们可以让一个 Operation 依赖于另一个 Operation，这样的话尽管两个 Operation 处于同一个并行队列中，但前者会直到后者执行完毕后再执行；<br>GCD 没有操作优先级（GCD 有队列优先级），能够使同一个并行队列中的任务区分先后地执行，而在 GCD 中，我们只能区分不同任务队列的优先级，如果要区分block任务的优先级，也需要大量的复杂代码；</li>
+<li>GCD 没有 KVO。<code>NSOperation</code> 可以监听一个 Operation 是否完成或取消，这样能比 GCD 更加有效地掌控我们执行的后台任务</li>
+<li>在 <code>NSOperationQueue</code> 中，我们可以随时取消已经设定要准备执行的任务(当然，已经开始的任务就无法阻止了)，而 GCD 没法停止已经加入 queue 的 block (其实是有的，但需要许多复杂的代码)</li>
+<li>我们能够对 <code>NSOperation</code> 进行继承，在这之上添加成员变量与成员方法，提高整个代码的复用度，这比简单地将 block 任务排入执行队列更有自由度，能够在其之上添加更多自定制的功能。</li>
+</ul>
+<p>20.使用 Dispatch Group,并行执行 A、B 任务，最后执行 C 任务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">dispatch_queue_t concurrentQueue = dispatch_queue_create(&quot;me.iYiming.concurrentQueue&quot;, DISPATCH_QUEUE_CONCURRENT);</div><div class="line"></div><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"></div><div class="line">dispatch_group_async(group, concurrentQueue, ^&#123;</div><div class="line">   // A 任务</div><div class="line">&#125;);</div><div class="line"></div><div class="line">dispatch_group_async(group, concurrentQueue, ^&#123;</div><div class="line">   // B 任务</div><div class="line">&#125;);</div><div class="line"></div><div class="line">dispatch_group_notify(group, concurrentQueue, ^&#123;</div><div class="line">   // C 任务</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>21.使用 <code>dispatch_once</code> 创建单例：</p>
+<p>单例：<strong>保证只分配一次内存</strong>  </p>
+<ul>
+<li>调用 <code>alloc</code> 方法的时候，内部会调用 <code>allocWithZone</code> 方法，所以控制好 <code>allocWithZone</code> 方法的内存开辟操作就能控制 <code>alloc</code> </li>
+<li><p><code>copy</code>、<code>mutableCopy</code> 同样要控制，直接返回调用者就好（因为 <code>copy</code> 和 <code>mutableCopy</code> 是对象方法，所以如果第一次内存分配控制好了，这里直接返回 <code>self</code>）  </p>
+</li>
+<li><p>MRC 下 <code>retain</code>、<code>release</code>、<code>retainCount</code> 处理</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">//保存单例对象的静态全局变量</div><div class="line">static id _instance;</div><div class="line">+ (instancetype)sharedTools &#123;</div><div class="line">    return [[self alloc]init];</div><div class="line">&#125;</div><div class="line">//在调用alloc方法之后，最终会调用allocWithZone方法</div><div class="line">+ (instancetype)allocWithZone:(struct _NSZone *)zone &#123;</div><div class="line">    //保证分配内存的代码只执行一次</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        _instance = [super allocWithZone:zone];</div><div class="line">    &#125;);</div><div class="line">    return _instance;</div><div class="line">&#125;</div><div class="line">//这是个对象方法，既然有对象而且是单例，那么调用者就是这个单例对象了，那就返回调用的对象就行</div><div class="line">- (id)copyWithZone:(NSZone *)zone &#123;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">//这是个对象方法，既然有对象而且是单例，那么调用者就是这个单例对象了，那就返回调用的对象就行</div><div class="line">- (id)mutableCopyWithZone:(NSZone *)zone &#123;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">#if __has_feature(objc_arc)</div><div class="line">//如果是ARC环境</div><div class="line">#else</div><div class="line">//如果不是ARC环境</div><div class="line"></div><div class="line">//既然是单例对象，总不能被人给销毁了吧，一旦销毁了，分配内存的代码已经执行过了，就再也不能创建对象了。所以覆盖掉release操作</div><div class="line">- (oneway void)release &#123;</div><div class="line">&#125;</div><div class="line">//这是个对象方法，既然有对象而且是单例，那么调用者就是这个单例对象了，那就返回调用的对象就行</div><div class="line">- (instancetype)retain &#123;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">//为了便于识别，这里返回 MAXFLOAT ，别的程序员看到这个数据，就能意识到这是单例。</div><div class="line">- (NSUInteger)retainCount &#123;</div><div class="line">    return MAXFLOAT;</div><div class="line">&#125;</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<p>22.<code>dispatch_sync</code> 执行 block 所在的 Queue 如果和当前 Queue 是同一个 Queue，那么会造成死锁。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">  [super viewDidLoad];</div><div class="line">  </div><div class="line">  dispatch_sync(dispatch_get_main_queue(),^&#123;</div><div class="line">    NSLog(@&quot;Hello !&quot;);</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  NSLog(@&quot;结束&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为什么？因为 <code>dispatch_sync</code> 是同步的，又在 <code>viewDidLoad</code> 里，所以主线程等待它执行完才能打印“结束“，然而 <code>dispatch_sync</code> 块需要在 <code>dispatch_get_main_queue()</code> 主线程里添加 block <code>^{
+    NSLog(@&quot;Hello !&quot;);
+  })</code>,因为主线程现在在等待中，所以 Block 永远无法添加进主线程队列中去，互相等待，从而造成死锁。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/06/05/di-7-zhang-xi-tong-kuang-jia/" class="prev">上一篇</a><a href="/2016/06/05/di-5-zhang-nei-cun-guan-li/" class="next">下一篇</a></div><div data-thread-key="2016/06/05/di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/" data-title="第 6 章 块与大中枢派发" data-url="http://iYiming.me/2016/06/05/di-6-zhang-kuai-yu-da-zhong-shu-pai-fa/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2014 - 2016 <a href="http://iYiming.me">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253468447'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s6.cnzz.com/z_stat.php%3Fid%3D1253468447%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></body></html>

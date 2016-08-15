@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 写给大忙人看的Swift（一） · 一鸣的博客</title><meta name="description" content="写给大忙人看的Swift（一） - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">写给大忙人看的Swift（一）</h1><div class="post-info">2015年8月24日</div><div class="post-content"><p><img src="/images/da-mang-ren-swift1/1.JPG" alt="Swift"></p>
+<p>关于 Swift 的书，我买了好几书，有实体书也有电子书，有好书也有烂书。今天买了本《写给大忙人看的 Swift 》，看看名字就知道自己有多功利。准备以此书开启我的 Swift 之旅。</p>
+<p>在Swift发布一年后，还没有真正进入 Swift 的世界，我有种种借口：项目中还是使用的Objective-C 无法马上使用 Swift 开发；官方文档是英文的，看英文很费劲；看翻译过来的中文版，感觉太多，无法坚持；Swift自身也在随时发生着改变； </p>
+<p>Swift 一定是未来的趋势，所以必须提前准备。既然感觉项目中无法马上使用 Swift 开发，那就自己建立一个自己的项目，既学习 Swift 又提高自己对整个项目的掌控能力；既然抱怨中英文文档难、多、不能坚持，那就看这本《写给大忙人看的 Swift 》，书很薄，不到 200 页，共 8 个章节。</p>
+<p>注：本系列，仅为自己读书摘要。如果你想购买此书，请移步到:</p>
+<p><a href="http://item.jd.com/11732275.html" target="_blank" rel="external">http://item.jd.com/11732275.html</a>  </p>
+<p>废话不多说，下面是整理的是第一章的内容：</p>
+<p>0.Swift 除了常见的注释外，还支持嵌套注释。  </p>
+<p>1.枚举或结构体在代码中以值的方式进行传递。也就是说，会创建原始对象的一份副本，并将次副本复制给新的变量，在代码中可以使用新的变量，对其进行修改和删除操作，并且这些操作不会影响到原始变量。反过来也是成立的：原始变量的使用、修改和删除不会影响到新的副本。  </p>
+<p>2.类是通过引用的方式进行传递的，在传递过程中，会将指向原始变量的指针赋值给新的变量。无论修改哪个变量，另外一个变量也会受到影响。  </p>
+<p>3.任何一种类型都不能隐式的转换成另外一种类型，这就意味着在代码中不能将一个 <code>Int</code> 和 <code>Float</code> 值进行相加操作。 如果需要将两个数值加在一起，首先需要确保这两个值的类型相同，或者明确的将某一个值的类型转换为与另一个值相同的类型。这样的规则有助于 Swift 成为一门具有安全性的编程语言：编译器会阻止这种混合类型之间进行操作，并可能引发异常结果。  </p>
+<p>4.<code>Switch</code> 结构必须含有 <code>default</code>。</p>
+<p>5.在 Swift 中，<code>Switch</code> 结构里，<code>case</code> 分支语句处理方式发生了重大改变。在 C 编程语言中，需要在每个case尾部添加一个 <code>break</code> 语句，否则程序将继续执行下一个 <code>case</code>。这一直是程序引发许多错误的根源。在 Swift 中，为了预防这样的错误，当遇到下一个 <code>case</code> 分支开始时，<code>switch</code> 语句会自动结束。 p9  </p>
+<p>6.Swift 有一个 Objective-C 中没有的强大功能：给循环语句添加一个标签（ label ），然后再内部循环中指定希望break或continue到哪个循环中。一个标签由标签名称之后跟着一个冒号构成，并且标签位于循环语句关键字之前。 p11  </p>
+<p>7.存储整形值的基本类型是 <code>Int</code>。<code>Int</code> 在 32 位的设备中表现为 32 位整形，而在 64 位的设备中则为 64 位整形。（<code>UInt</code> 也类似）  </p>
+<p>8.当在设备间传输文件时，为了确保兼容性，写入到文件中（或者通过网络传输）所有的整形变量都应该明确指定长度。当读取存储在文件中的值时，应该强制使用32或64位变量，以避免可能出现的类型不匹配和/或数据损坏。  </p>
+<p>9.<code>Float</code> 是 32 位值，<code>Double</code> 是 64 位值，这与设备的架构无关。  </p>
+<p>10.当使用小数时，编译器总是将其推断为 <code>Double</code> 类型，而不是 <code>Float</code>。因此，如果不需要 64 位的高精度，需要显示的将变量声明为 <code>Float</code>。  </p>
+<p>11.Swift 中的 <code>String</code> 是 <code>Character</code>（字符）类型值的集合。每个Character代表一个 Unicode 字符。  </p>
+<p>12.在 Swift 中使用 <code>Count()</code> 函数来判断出一个字符串中有多少个字符。  </p>
+<p>13.Swift 中的 <code>String</code> 也兼容 Objective-C 中的 <code>NSString</code> ，由于 <code>NSString</code> 和 <code>String</code> 的实现方式有所不同，因此从 <code>NSString</code> 的<code>length</code> 属性得到的元素总数可能跟 Swift 中的不同。这是因为 <code>length</code> 返回的是 <code>NSString</code> UTF-16 版本中 16 位编码的字符数量，而有些Unicode字符使用了多个 16 位。通过使用 <code>Count(str.utf16)</code> 获得的值（其中 <code>str</code> 为<code>String</code> 变量）与 <code>NSString</code> 的 <code>length</code> 属性就会相同。例如：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// Swift:</div><div class="line">var myStr = &quot;Tom is a 🐱&quot;</div><div class="line"></div><div class="line">println(count(myStr))//打印出 10</div><div class="line">println(count(myStr.utf16))//打印出 11 </div><div class="line"></div><div class="line">// Objective-C:</div><div class="line">NSString* myStr = @&quot;Tom is a 🐱&quot;;</div><div class="line">NSLog(@&quot;%@&quot;,@(myStr.length));//打印出 11</div></pre></td></tr></table></figure>
+<p>14.在 Swift 中，数组是集合类型中的一种，它用来存储相同类型的有序列表。</p>
+<p>15.数组的声明可以用两种方式表示：长形式 和 短形式。这两种方法的效果都是相同的，它们可以互换使用：<br>&gt;</p>
+<blockquote>
+<p>长形式： <code>Array&lt;Type&gt;</code><br>短形式：<code>[Type]</code>  </p>
+</blockquote>
+<p>16.利用长形式声明和初始化一个数组：  </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> people: <span class="type">Array</span>&lt;<span class="type">String</span>&gt; = [] <span class="comment">//显式类型</span></div><div class="line"><span class="comment">//或</span></div><div class="line"><span class="keyword">var</span> people = <span class="type">Array</span>&lt;<span class="type">String</span>&gt;() <span class="comment">//隐式类型</span></div></pre></td></tr></table></figure>
+<p>17.利用短形式声明和初始化一个数组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> people: [<span class="type">String</span>] = [] <span class="comment">//显式类型</span></div><div class="line"><span class="comment">//或</span></div><div class="line"><span class="keyword">var</span> people = [<span class="type">String</span>]() <span class="comment">//隐式类型</span></div></pre></td></tr></table></figure>
+<p>18.由于数组属于结构体，所以数组传递的时候是一份副本，而数组中的元素是副本还是引用，则要取决于该元素是枚举、结构体还是类。  </p>
+<p>19.用 <code>for-in</code> 访问数组中的元素，有两种方式：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> people = [<span class="string">"Jim"</span>,<span class="string">"Tom"</span>,<span class="string">"Tim"</span>]</div><div class="line"><span class="comment">//0.不使用索引</span></div><div class="line"><span class="keyword">for</span> name <span class="keyword">in</span> people&#123;<span class="comment">//name变量名称是随意起的</span></div><div class="line">	<span class="built_in">print</span>(<span class="string">"name : <span class="subst">\(name)</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//1.使用索引</span></div><div class="line"><span class="keyword">for</span> (index,name) <span class="keyword">in</span> people.<span class="built_in">enumerate</span>()&#123;<span class="comment">//index变量名称、name变量名称是随意起的</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(index)</span> : <span class="subst">\(name)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>20.字典是存储无序相同类型的集合，存储在其中的每个对象都有唯一的一个 key。</p>
+<p>21.字典的声明，跟数组的声明一样，有两种方式表示：长形式和短形式。<br>&gt;</p>
+<blockquote>
+<p>长形式： <code>Dictionary&lt;Key Type, Value Type&gt;</code><br>短形式：<code>[Key Type : Value Type]</code> </p>
+</blockquote>
+<p>22.利用长形式声明和初始化一个字典：  </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> people: <span class="type">Dictionary</span>&lt;<span class="type">String</span>,<span class="type">PeopleClass</span>&gt; = [:] <span class="comment">//显式类型</span></div><div class="line"><span class="comment">//或</span></div><div class="line"><span class="keyword">var</span> people = <span class="type">Dictionary</span> &lt;<span class="type">String</span>,<span class="type">PeopleClass</span>&gt;() <span class="comment">//隐式类型</span></div></pre></td></tr></table></figure>
+<p>23.利用短形式声明和初始化一个字典：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> people: [<span class="type">String</span>:<span class="type">PeopleClass</span>] = [:] <span class="comment">//显式类型</span></div><div class="line"><span class="comment">//或</span></div><div class="line"><span class="keyword">var</span> people = [<span class="type">String</span>:<span class="type">PeopleClass</span>]() <span class="comment">//隐式类型</span></div></pre></td></tr></table></figure>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/09/01/xie-gei-da-mang-ren-kan-de-swift-er/" class="prev">上一篇</a><a href="/2015/07/28/wo-you-yi-wan-jiu-ke-yi-wei-feng-chen/" class="next">下一篇</a></div><div data-thread-key="2015/08/24/da-mang-ren-swift-yi/" data-title="写给大忙人看的Swift（一）" data-url="http://iYiming.me/2015/08/24/da-mang-ren-swift-yi/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2014 - 2016 <a href="http://iYiming.me">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253468447'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s6.cnzz.com/z_stat.php%3Fid%3D1253468447%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></body></html>

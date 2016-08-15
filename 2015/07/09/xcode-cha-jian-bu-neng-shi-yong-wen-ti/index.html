@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Xcode 插件不能使用问题 · 一鸣的博客</title><meta name="description" content="Xcode 插件不能使用问题 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Xcode 插件不能使用问题</h1><div class="post-info">2015年7月9日</div><div class="post-content"><p>最近因为某些原因，重装了一下 Xcode，导致了 Xcode 的插件不能使用。中间捣鼓了一段时间才解决，故用单独的一篇博客来总结下。</p>
+<p>前提准备：</p>
+<p><a href="https://github.com/supermarin/Alcatraz" target="_blank" rel="external">Xcode插件管理器：Alcatraz</a></p>
+<p>关于 Alcatraz 看文档就够了，安装方式也很简单。</p>
+<p>由于是重装 Xcode，中间出现了几个问题没有注意到的问题。</p>
+<p>##0.安装 Alcatraz 前提是需要安装 Xcode 命令行工具</p>
+<p>好久没动过了，文档也没仔细看，直接在命令行里输入了安装命令（如果已经装过，请调过）。但是文档里明明写着需要 Xcode 命令行工具，太大意了。见下图：</p>
+<p><img src="/images/xcode_plug/xcode_plug_1.png" alt="Alcatraz"></p>
+<p>文档可能好久没有更新了，在 Xcode 的 Preference&gt;Downloads 中没有发现 Xcode Command Line Tools 下载入口。于是在网上查到了下面的命令来安装它：  </p>
+<p>xcode-select –install  </p>
+<p>但是在命令行里输入后回车，出现了如下错误：</p>
+<p><img src="/images/xcode_plug/2.png" alt="Alcatraz"></p>
+<p>于是各种搜索，在 stackoverflow 找到了答案：</p>
+<p><a href="http://stackoverflow.com/questions/19907576/xcode-is-not-currently-available-from-the-software-update-server" target="_blank" rel="external">Xcode is not currently available from the Software Update server</a>  </p>
+<p>意思就是说：不要使用 xcode-select –install 命令来安装 Xcode 命令行工具啦，去官网上下载吧，下载地址在这里<a href="https://developer.apple.com/downloads/index.action?name=for%20Xcode%20-" target="_blank" rel="external">Apple Xcode命令行工具下载</a>，这里为保险起见，要下载对应 Xcode 版本的 Xcode 命令工具。</p>
+<p>OK，到这里我们下载完毕并成功安装完 Xcode 命令工具。</p>
+<p>##1.安装Alcatraz</p>
+<p>用这个命令行：  </p>
+<p><code>curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</code></p>
+<p>或者直接把<a href="https://github.com/supermarin/Alcatraz" target="_blank" rel="external">Alcatraz</a>源码下载下来，直接运行。</p>
+<p>安装成功了，会出现下面这个界面：  </p>
+<p><img src="/images/xcode_plug/3.png" alt="Alcatraz"></p>
+<p>注意红框里面的内容，重启下 Xcode。</p>
+<p>可能到这里，你以为安装成功了，我也是这么认为的。但就是没看到下图中的效果：  </p>
+<p><img src="/images/xcode_plug/4.png" alt="Alcatraz"></p>
+<p>好吧，接着往下看</p>
+<p>##2.一个比较有用的脚本</p>
+<p><a href="https://github.com/cikelengfeng/RPAXU" target="_blank" rel="external">脚本地址：https://github.com/cikelengfeng/RPAXU</a></p>
+<p>这个脚本是干什么，看下图：</p>
+<p><img src="/images/xcode_plug/5.png" alt="RPAXU">  </p>
+<p>下载下来，进入到这个文件夹，使用 <code>sh refreshPluginsAfterXcodeUpgrading.sh</code>命令，即可安装成功。</p>
+<p>重启 Xcode，这会儿再看看是不是下图这个结果：  </p>
+<p><img src="/images/xcode_plug/4.png" alt="Alcatraz"></p>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/07/12/ios-tu-pian-diao-zheng-ji-zhu/" class="prev">上一篇</a><a href="/2015/07/05/custom-refresh-and-loading/" class="next">下一篇</a></div><div data-thread-key="2015/07/09/xcode-cha-jian-bu-neng-shi-yong-wen-ti/" data-title="Xcode 插件不能使用问题" data-url="http://iYiming.me/2015/07/09/xcode-cha-jian-bu-neng-shi-yong-wen-ti/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2014 - 2016 <a href="http://iYiming.me">iYiming</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253468447'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s6.cnzz.com/z_stat.php%3Fid%3D1253468447%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></body></html>
