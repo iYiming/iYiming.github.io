@@ -604,13 +604,11 @@
     <link href="http://iYiming.me/2016/05/22/zi-ding-yi-xia-la-shua-xin/"/>
     <id>http://iYiming.me/2016/05/22/zi-ding-yi-xia-la-shua-xin/</id>
     <published>2016-05-22T02:26:20.000Z</published>
-    <updated>2016-08-15T10:34:59.000Z</updated>
+    <updated>2016-08-16T05:30:25.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>Swift 变化太快，原先敲的码已年久失修，重新整理之</p>
-</blockquote>
-<p>实现的效果如下：</p>
+    <content type="html"><![CDATA[<p>实现的效果如下：</p>
 <p><img src="/images/custom_refresh_2/1.gif" alt="1"></p>
+<a id="more"></a>
 <h2 id="下拉刷新原理"><a href="#下拉刷新原理" class="headerlink" title="下拉刷新原理"></a>下拉刷新原理</h2><ul>
 <li><code>UIScrollView</code> 的 <code>contentInset</code> 属性用于保持停留</li>
 <li><code>UIScrollView</code> 的 <code>contentOffset</code> 属性获取偏移量。从而获取刷新状态，使用它我们就可以制定相应的自定义动画了。</li>
@@ -639,12 +637,8 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;Swift 变化太快，原先敲的码已年久失修，重新整理之&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;实现的效果如下：&lt;/p&gt;
+      &lt;p&gt;实现的效果如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/images/custom_refresh_2/1.gif&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
-&lt;h2 
     
     </summary>
     
@@ -658,7 +652,7 @@
     <link href="http://iYiming.me/2016/05/08/xie-yi-ge-jian-yi-shi-pin-bo-fang-qi/"/>
     <id>http://iYiming.me/2016/05/08/xie-yi-ge-jian-yi-shi-pin-bo-fang-qi/</id>
     <published>2016-05-08T15:27:57.000Z</published>
-    <updated>2016-08-14T00:54:49.000Z</updated>
+    <updated>2016-08-16T05:29:32.000Z</updated>
     
     <content type="html"><![CDATA[<p>周末抽时间写了个视频播放器，学习使用 Sketch，画了几个图标。实现功能如下：</p>
 <ul>
@@ -668,6 +662,7 @@
 </ul>
 <p>实现效果图：</p>
 <p><img src="/images/VideoPlayer/0.png" alt="/images/VideoPlayer"></p>
+<a id="more"></a>
 <p>废话少说，直接上代码：</p>
 <h3 id="0-初始化一个视频播放器"><a href="#0-初始化一个视频播放器" class="headerlink" title="0.初始化一个视频播放器"></a>0.初始化一个视频播放器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">private lazy var player: AVPlayer = &#123;</div><div class="line">   let asset = AVURLAsset(URL: self.URL)</div><div class="line">   let playerItem = AVPlayerItem(asset: asset)</div><div class="line">   var player = AVPlayer(playerItem: playerItem)</div><div class="line">        </div><div class="line">   let vol = AVAudioSession.sharedInstance().outputVolume</div><div class="line">   player.volume = 20.0 * log10f(vol + FLT_MIN)</div><div class="line">   self.startVolume =  player.volume;</div><div class="line">        </div><div class="line">   return player</div><div class="line">&#125;()</div><div class="line"></div><div class="line">let playerLayer = AVPlayerLayer(player: player)</div><div class="line">playerLayer.frame = self.bounds</div><div class="line">self.layer.addSublayer(playerLayer)</div></pre></td></tr></table></figure>
 <h3 id="1-添加监听属性"><a href="#1-添加监听属性" class="headerlink" title="1.添加监听属性"></a>1.添加监听属性</h3><p>监听的属性有：  </p>
@@ -701,7 +696,7 @@
 &lt;li&gt;手势调节音量&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;实现效果图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/i
+&lt;p&gt;&lt;img src=&quot;/images/VideoPlayer/0.png&quot; alt=&quot;/images/VideoPlayer&quot;&gt;&lt;/p&gt;
     
     </summary>
     
