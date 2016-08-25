@@ -3,19 +3,17 @@
 <p><a href="https://github.com/supermarin/Alcatraz" target="_blank" rel="external">Xcode插件管理器：Alcatraz</a></p>
 <p>关于 Alcatraz 看文档就够了，安装方式也很简单。</p>
 <p>由于是重装 Xcode，中间出现了几个问题没有注意到的问题。</p>
-<p>##0.安装 Alcatraz 前提是需要安装 Xcode 命令行工具</p>
-<p>好久没动过了，文档也没仔细看，直接在命令行里输入了安装命令（如果已经装过，请调过）。但是文档里明明写着需要 Xcode 命令行工具，太大意了。见下图：</p>
+<h2 id="安装-Alcatraz-前提是需要安装-Xcode-命令行工具"><a href="#安装-Alcatraz-前提是需要安装-Xcode-命令行工具" class="headerlink" title="安装 Alcatraz 前提是需要安装 Xcode 命令行工具"></a>安装 Alcatraz 前提是需要安装 Xcode 命令行工具</h2><p>好久没动过了，文档也没仔细看，直接在命令行里输入了安装命令（如果已经装过，请调过）。但是文档里明明写着需要 Xcode 命令行工具，太大意了。见下图：</p>
 <p><img src="/images/xcode_plug/xcode_plug_1.png" alt="Alcatraz"></p>
 <p>文档可能好久没有更新了，在 Xcode 的 Preference&gt;Downloads 中没有发现 Xcode Command Line Tools 下载入口。于是在网上查到了下面的命令来安装它：  </p>
 <p>xcode-select –install  </p>
 <p>但是在命令行里输入后回车，出现了如下错误：</p>
 <p><img src="/images/xcode_plug/2.png" alt="Alcatraz"></p>
-<p>于是各种搜索，在 stackoverflow 找到了答案：</p>
+<p>于是各种搜索，在 Stack Overflow 找到了答案：</p>
 <p><a href="http://stackoverflow.com/questions/19907576/xcode-is-not-currently-available-from-the-software-update-server" target="_blank" rel="external">Xcode is not currently available from the Software Update server</a>  </p>
 <p>意思就是说：不要使用 xcode-select –install 命令来安装 Xcode 命令行工具啦，去官网上下载吧，下载地址在这里<a href="https://developer.apple.com/downloads/index.action?name=for%20Xcode%20-" target="_blank" rel="external">Apple Xcode命令行工具下载</a>，这里为保险起见，要下载对应 Xcode 版本的 Xcode 命令工具。</p>
 <p>OK，到这里我们下载完毕并成功安装完 Xcode 命令工具。</p>
-<p>##1.安装Alcatraz</p>
-<p>用这个命令行：  </p>
+<h2 id="安装-Alcatraz"><a href="#安装-Alcatraz" class="headerlink" title="安装 Alcatraz"></a>安装 Alcatraz</h2><p>用这个命令行：  </p>
 <p><code>curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh | sh</code></p>
 <p>或者直接把<a href="https://github.com/supermarin/Alcatraz" target="_blank" rel="external">Alcatraz</a>源码下载下来，直接运行。</p>
 <p>安装成功了，会出现下面这个界面：  </p>
@@ -24,14 +22,13 @@
 <p>可能到这里，你以为安装成功了，我也是这么认为的。但就是没看到下图中的效果：  </p>
 <p><img src="/images/xcode_plug/4.png" alt="Alcatraz"></p>
 <p>好吧，接着往下看</p>
-<p>##2.一个比较有用的脚本</p>
-<p><a href="https://github.com/cikelengfeng/RPAXU" target="_blank" rel="external">脚本地址：https://github.com/cikelengfeng/RPAXU</a></p>
+<h2 id="一个比较有用的脚本"><a href="#一个比较有用的脚本" class="headerlink" title="一个比较有用的脚本"></a>一个比较有用的脚本</h2><p><a href="https://github.com/cikelengfeng/RPAXU" target="_blank" rel="external">脚本地址：https://github.com/cikelengfeng/RPAXU</a></p>
 <p>这个脚本是干什么，看下图：</p>
 <p><img src="/images/xcode_plug/5.png" alt="RPAXU">  </p>
 <p>下载下来，进入到这个文件夹，使用 <code>sh refreshPluginsAfterXcodeUpgrading.sh</code>命令，即可安装成功。</p>
 <p>重启 Xcode，这会儿再看看是不是下图这个结果：  </p>
 <p><img src="/images/xcode_plug/4.png" alt="Alcatraz"></p>
-</div></article></div></section><footer><div class="paginator"><a href="/2015/07/12/ios-tu-pian-diao-zheng-ji-zhu/" class="prev">上一篇</a><a href="/2015/07/05/custom-refresh-and-loading/" class="next">下一篇</a></div><div data-thread-key="2015/07/09/xcode-cha-jian-bu-neng-shi-yong-wen-ti/" data-title="Xcode 插件不能使用问题" data-url="http://iYiming.me/2015/07/09/xcode-cha-jian-bu-neng-shi-yong-wen-ti/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
+</div></article></div></section><footer><div class="paginator"><a href="/2015/07/12/ios-tu-pian-diao-zheng-ji-zhu/" class="prev">上一篇</a><a href="/2015/06/28/pop-dong-hua/" class="next">下一篇</a></div><div data-thread-key="2015/07/09/xcode-cha-jian-bu-neng-shi-yong-wen-ti/" data-title="Xcode 插件不能使用问题" data-url="http://iYiming.me/2015/07/09/xcode-cha-jian-bu-neng-shi-yong-wen-ti/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
