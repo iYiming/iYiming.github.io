@@ -1,54 +1,34 @@
 <!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Git 学习之路 · 一鸣的博客</title><meta name="description" content="Git 学习之路 - iYiming"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://iYiming.me/atom.xml" title="一鸣的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/jiajiayouba" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/iYiming" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Git 学习之路</h1><div class="post-info">2014年11月2日</div><div class="post-content"><p>本文章只是简单把自己常用的 Git 命令罗列一下，便于查找。</p>
-<p>本文主要参考 <a href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf" target="_blank" rel="external">GitHub Git Cheat Sheet</a>。如果你想系统的学习Git，你可以阅读<a href="http://git-scm.com/doc" target="_blank" rel="external">官方中文文档</a>,可以从这里下载 <a href="http://pan.baidu.com/s/1c0xUk3e" target="_blank" rel="external">中文Pro Git epub下载地址</a>。后续学到内容，会在本文章里更新。  </p>
+<p>本文主要参考 <a href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf" target="_blank" rel="external">GitHub Git Cheat Sheet</a>。如果你想系统的学习 Git，你可以阅读<a href="http://git-scm.com/doc" target="_blank" rel="external">官方中文文档</a>,可以从这里下载 <a href="http://pan.baidu.com/s/1c0xUk3e" target="_blank" rel="external">中文 Pro Git epub 下载地址</a>。后续学到内容，会在本文章里更新。  </p>
 <p><img src="/images/Git/0.png" alt="Git"></p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>在 Git 内部有 3 中状态：</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在 Git 内部有 3 中状态：</p>
 <ul>
 <li>已修改</li>
 <li>已暂存（<code>git add .</code>）</li>
 <li>已提交 (<code>git commit -m &#39;XXX&#39;</code>)</li>
 </ul>
-<p>已修改表示修改了某个文件，但是还没有暂存。  </p>
-<p>已暂存表示把已修改的文件放在下次提交时要保存的清单中。  </p>
-<p>已提交表示该文件已经被安全地保存在本地数据库中了。  </p>
+<p>已修改表示修改了某个文件，但是还没有暂存。<br>已暂存表示把已修改的文件放在下次提交时要保存的清单中。<br>已提交表示该文件已经被安全地保存在本地数据库中了。  </p>
 <p>基本的 Git 工作流程如下：</p>
-<ol>
-<li>在工作目录中修改某文件（修改）</li>
-<li>对这些修改了的文件作快照，并保存到暂存区（暂存）</li>
-<li>提交更新，将保存在暂存区域的文件快照转储到 git 目录中（提交）  </li>
-</ol>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>Mac OS X 上已经自带 Git 了。</p>
+<p>1.在工作目录中修改某文件（修改）<br>2.对这些修改了的文件作快照，并保存到暂存区（暂存）<br>3.提交更新，将保存在暂存区域的文件快照转储到 git 目录中（提交）  </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Mac OS X 上已经自带 Git 了。</p>
 <p>其他系统，请参考：</p>
 <p><a href="https://git-scm.com/downloads" target="_blank" rel="external">https://git-scm.com/downloads</a></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>一般在新的系统上，我们都需要先配置下自己的 Git 工作环境。配置工作一般只需一次，以后升级时还会沿用现在的配置。当然，如果需要，你随时可以用相同的命令修改已有的配置。</p>
-<h4 id="全局配置："><a href="#全局配置：" class="headerlink" title="全局配置："></a>全局配置：</h4><ul>
-<li>配置用户名</li>
-</ul>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>一般在新的系统上，我们都需要先配置下自己的 Git 工作环境。配置工作一般只需一次，以后升级时还会沿用现在的配置。当然，如果需要，你随时可以用相同的命令修改已有的配置。</p>
+<h2 id="全局配置："><a href="#全局配置：" class="headerlink" title="全局配置："></a>全局配置：</h2><p>配置用户名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &apos;Tom&apos;</div></pre></td></tr></table></figure>
-<ul>
-<li>配置邮箱</li>
-</ul>
+<p>配置邮箱：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global user.email &apos;Tom@163.com&apos;</div></pre></td></tr></table></figure>
-<h4 id="为某个文件夹单独配置"><a href="#为某个文件夹单独配置" class="headerlink" title="为某个文件夹单独配置"></a>为某个文件夹单独配置</h4><ol>
-<li>先进入要配置的文件夹，并初始化 git</li>
-</ol>
+<h2 id="为某个文件夹单独配置"><a href="#为某个文件夹单独配置" class="headerlink" title="为某个文件夹单独配置"></a>为某个文件夹单独配置</h2><p>1.先进入要配置的文件夹，并初始化 git</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd [文件夹]</div><div class="line">git init</div></pre></td></tr></table></figure>
-<ol>
-<li>配置信息</li>
-</ol>
-<ul>
-<li>配置用户名</li>
-</ul>
+<p>2.配置用户名：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --local user.name &apos;Jerry&apos;</div></pre></td></tr></table></figure>
-<ul>
-<li>配置邮箱</li>
-</ul>
+<p>3.配置邮箱：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --local user.email &apos;Jerry@163.com&apos;</div></pre></td></tr></table></figure>
-<h4 id="查看有户名和邮箱"><a href="#查看有户名和邮箱" class="headerlink" title="查看有户名和邮箱"></a>查看有户名和邮箱</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config user.name</div><div class="line">git config user.email</div></pre></td></tr></table></figure>
-<p>注：在为某个文件夹单独配置的文件下查看，如上配置，显示用户名为 Jerry，邮箱为Jerry@163.com。否则为全局配置，显示用户名为 Tom，邮箱为 Tom@163.com。</p>
-<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><h4 id="从当前目录初始化"><a href="#从当前目录初始化" class="headerlink" title="从当前目录初始化"></a>从当前目录初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd [目录]</div><div class="line"></div><div class="line">git init</div></pre></td></tr></table></figure>
-<h4 id="从现有仓库克隆"><a href="#从现有仓库克隆" class="headerlink" title="从现有仓库克隆"></a>从现有仓库克隆</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd [目录]</div><div class="line"></div><div class="line">git clone [仓库地址]</div></pre></td></tr></table></figure>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>前提</p>
-<p>1.新建一个文件夹名为 test，并进入</p>
+<h2 id="查看有户名和邮箱"><a href="#查看有户名和邮箱" class="headerlink" title="查看有户名和邮箱"></a>查看有户名和邮箱</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config user.name</div><div class="line">git config user.email</div></pre></td></tr></table></figure>
+<p>注：在为某个文件夹单独配置的文件下查看，如上配置，显示用户名为 Jerry，邮箱为 Jerry@163.com。否则为全局配置，显示用户名为 Tom，邮箱为 Tom@163.com。</p>
+<h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><h2 id="从当前目录初始化"><a href="#从当前目录初始化" class="headerlink" title="从当前目录初始化"></a>从当前目录初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd [目录]</div><div class="line"></div><div class="line">git init</div></pre></td></tr></table></figure>
+<h2 id="从现有仓库克隆"><a href="#从现有仓库克隆" class="headerlink" title="从现有仓库克隆"></a>从现有仓库克隆</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd [目录]</div><div class="line"></div><div class="line">git clone [仓库地址]</div></pre></td></tr></table></figure>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>1.新建一个文件夹名为 test，并进入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir test</div><div class="line">cd test</div></pre></td></tr></table></figure>
 <p>2.初始化 Git</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git init</div></pre></td></tr></table></figure>
@@ -56,33 +36,33 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim 1.txt</div></pre></td></tr></table></figure>
 <ol>
 <li>按 <code>i</code> 开始写入一些英文</li>
-<li>按 esc 键</li>
+<li>按 <code>esc</code> 键</li>
 <li>输入 <code>:wq</code> 退出</li>
 </ol>
-<h4 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h4><p>现在我们已经创建了文件，并添加了文本内容。也就是介绍部分所说的修改状态。现在我们要将修改添加到暂存区，就用到了 <code>git add</code> 命令:</p>
+<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>现在我们已经创建了文件，并添加了文本内容。也就是介绍部分所说的修改状态。现在我们要将修改添加到暂存区，就用到了 <code>git add</code> 命令:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add 1.txt</div></pre></td></tr></table></figure>
-<p>备注：如果添加并修噶了了多个文件，不想一个个的添加到暂存区，可以使用全部添加命令：</p>
+<p>备注：如果添加并修改了多个文件，不想一个个的添加到暂存区，可以使用全部添加命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add .</div></pre></td></tr></table></figure>
-<h4 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h4><p>现在文件已经到了暂存区状态，我们如果要安全的保存在本地数据库中即提交，我们就要使用 <code>git commit</code> 命令：</p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>现在文件已经到了暂存区状态，我们如果要安全的保存在本地数据库中即提交，我们就要使用 <code>git commit</code> 命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &apos;我创建并修改了 1.txt 文件&apos;</div></pre></td></tr></table></figure>
 <p>注： <code>-m</code> 后面文字备注了我们操作了什么。</p>
-<h4 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h4><p><code>git diff</code> 命令使用来查看修改的但是还没暂存（<code>git add</code>）的改动。</p>
+<h2 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h2><p><code>git diff</code> 命令使用来查看修改的但是还没暂存（<code>git add</code>）的改动。</p>
 <p>比如我们继续修改 1.txt 文件，追加文本 <code>Hello World</code>。使用 <code>git diff</code> 命令会看到：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">diff --git a/1.txt b/1.txt</div><div class="line">index aa1151a..20fa783 100644</div><div class="line">--- a/1.txt</div><div class="line">+++ b/1.txt</div><div class="line">@@ -1 +1,3 @@</div><div class="line"> init</div><div class="line">+</div><div class="line">+Hello World</div></pre></td></tr></table></figure>
 <p>注：若是要看已经暂存起来的文件和上次提交时的快照之间的差异，可以用命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff --cached</div></pre></td></tr></table></figure>
-<h4 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h4><p>与上面的 <code>git diff</code> 不同，<code>git status</code> 的显示比较简单，仅仅列出了修改过的文件。</p>
+<h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><p>与上面的 <code>git diff</code> 不同，<code>git status</code> 的显示比较简单，仅仅列出了修改过的文件。</p>
 <p>注：该命令查看的是 修改的文件 和 已暂存文件的状态。</p>
-<h4 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h4><p>在提交了若干更新后或是克隆了某个项目，想看提交历史，可以使用 <code>git log</code> 命令。</p>
-<h4 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h4><p>因为上面的内容都是在本地操作，我们要链接远程仓库怎么办？ 我们使用 <code>git remote</code> 命令：</p>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>在提交了若干更新后或是克隆了某个项目，想看提交历史，可以使用 <code>git log</code> 命令。</p>
+<h2 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h2><p>因为上面的内容都是在本地操作，我们要链接远程仓库怎么办？ 我们使用 <code>git remote</code> 命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add [shortname] [url]</div></pre></td></tr></table></figure>
 <p>比如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add origin git://github.com/git.git</div></pre></td></tr></table></figure>
-<h4 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h4><p>远端有代码更新时，我们使用 <code>git pull</code> 命令,拉取远端代码：</p>
+<h2 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h2><p>远端有代码更新时，我们使用 <code>git pull</code> 命令,拉取远端代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull origin master</div></pre></td></tr></table></figure>
-<h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><p>向远端更新代码时，使用 <code>git push</code> 命令，</p>
+<h2 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h2><p>向远端更新代码时，使用 <code>git push</code> 命令，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure>
-<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><h4 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h4><p>1.创建本地分支</p>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><h2 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h2><p>1.创建本地分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch dev</div></pre></td></tr></table></figure>
 <p>注：默认分支为 master。<code>git init</code> 刚开始时时没有分支的，只有提交过一次后才会出现 master 分支。切换分支使用 <code>git checkout [分支名称]</code>。如切换到 dev 分支：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout dev</div></pre></td></tr></table></figure>
@@ -95,7 +75,7 @@
 <p>来实现相同的效果，它的意思是“提取我的 dev 并更新到远程仓库的 dev”。</p>
 <p>通过此语法，你可以把本地分支推送到某个命名不同的远程分支：若想把远程分支叫做 remoteDev，可以用:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin dev:remoteDev</div></pre></td></tr></table></figure>
-<h4 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h4><p>1.删除本地分支</p>
+<h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><p>1.删除本地分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d [分支名称]</div></pre></td></tr></table></figure>
 <p>比如删除本地分支 dev</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout master</div><div class="line"></div><div class="line">git branch -d dev</div></pre></td></tr></table></figure>
@@ -103,7 +83,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :[远程分支名称]</div></pre></td></tr></table></figure>
 <p>比如删除远程分支 dev:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :dev</div></pre></td></tr></table></figure>
-<h4 id="跟踪分支"><a href="#跟踪分支" class="headerlink" title="跟踪分支"></a>跟踪分支</h4><p>从远程分支检出的本地分支，成为跟踪分支。跟踪分支是一种和远程分支有直接联系的本地分支。在跟踪分支里输入 <code>git push</code>，Git 会自行推断应该向哪个拂去其的哪个分支推送数据。反过来，在这些分支里运行 <code>git pull</code> 会获取所有远程索引，并把它们的数据都合并到本地分支中来。</p>
+<h2 id="跟踪分支"><a href="#跟踪分支" class="headerlink" title="跟踪分支"></a>跟踪分支</h2><p>从远程分支检出的本地分支，成为跟踪分支。跟踪分支是一种和远程分支有直接联系的本地分支。在跟踪分支里输入 <code>git push</code>，Git 会自行推断应该向哪个拂去其的哪个分支推送数据。反过来，在这些分支里运行 <code>git pull</code> 会获取所有远程索引，并把它们的数据都合并到本地分支中来。</p>
 <p>在克隆仓库时，Git 通常会自动创建一个 master 分支来跟踪 origin/master。这正是 <code>git push</code> 和 <code>git pull</code> 一开始就能正常工作的原因。</p>
 <p>有时远程有新分支，我们需要检出，如何操作呢？两步。</p>
 <p>1.通过 fetch 操作抓取新的远程分支</p>
@@ -113,14 +93,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b [分支名] [远程名]/[分支名]</div></pre></td></tr></table></figure>
 <p>比如要检出远程分支 newfeature:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch</div><div class="line">git checkout -b newfeature origin/newfeature</div></pre></td></tr></table></figure>
-<h2 id="储藏（stash"><a href="#储藏（stash" class="headerlink" title="储藏（stash)"></a>储藏（stash)</h2><p>当正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上记性一些工作。问题是，你不想提交进行了一般的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是 <code>git stash</code> 命令。</p>
-<h4 id="使用储藏"><a href="#使用储藏" class="headerlink" title="使用储藏"></a>使用储藏</h4><p>接上文，我们更改 1.txt 文件完成后，执行操作：</p>
+<h1 id="储藏（stash"><a href="#储藏（stash" class="headerlink" title="储藏（stash)"></a>储藏（stash)</h1><p>当正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上记性一些工作。问题是，你不想提交进行了一般的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是 <code>git stash</code> 命令。</p>
+<h2 id="使用储藏"><a href="#使用储藏" class="headerlink" title="使用储藏"></a>使用储藏</h2><p>接上文，我们更改 1.txt 文件完成后，执行操作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash</div></pre></td></tr></table></figure>
 <p>如果我们想备注一下储藏，更方便的知道储藏的是什么东西，可以使用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash save &quot;备注信息&quot;</div></pre></td></tr></table></figure>
 <p>上面的命令将会把我们的修改储藏起来。</p>
-<h4 id="查看储藏列表"><a href="#查看储藏列表" class="headerlink" title="查看储藏列表"></a>查看储藏列表</h4><p>我们可以通过，<code>git stash list</code> 来查看所有储藏。</p>
-<h4 id="使用某次储藏"><a href="#使用某次储藏" class="headerlink" title="使用某次储藏"></a>使用某次储藏</h4><p>使用最后一次储藏，可以使用：</p>
+<h2 id="查看储藏列表"><a href="#查看储藏列表" class="headerlink" title="查看储藏列表"></a>查看储藏列表</h2><p>我们可以通过，<code>git stash list</code> 来查看所有储藏。</p>
+<h2 id="使用某次储藏"><a href="#使用某次储藏" class="headerlink" title="使用某次储藏"></a>使用某次储藏</h2><p>使用最后一次储藏，可以使用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash apply</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash pop</div></pre></td></tr></table></figure>
 <p>注：apply 会使用这次储藏，但不会删除这次储藏。pop 会使用这次储藏，并删除这次储藏。</p>
@@ -128,10 +108,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash apply stash@&#123;index&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash pop stash@&#123;index&#125;</div></pre></td></tr></table></figure>
 <p>注 <code>stash@{index}</code> 中的 index，是 stash 的索引。使用 <code>git stash list</code> 可以看到每次的储藏索引。</p>
-<h4 id="删除某次储藏"><a href="#删除某次储藏" class="headerlink" title="删除某次储藏"></a>删除某次储藏</h4><p>删除储藏使用：</p>
+<h2 id="删除某次储藏"><a href="#删除某次储藏" class="headerlink" title="删除某次储藏"></a>删除某次储藏</h2><p>删除储藏使用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash drop stash@&#123;0&#125;</div></pre></td></tr></table></figure>
-<h4 id="清除所有储藏"><a href="#清除所有储藏" class="headerlink" title="清除所有储藏"></a>清除所有储藏</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash clear</div></pre></td></tr></table></figure>
-<h2 id="合并（merge"><a href="#合并（merge" class="headerlink" title="合并（merge)"></a>合并（merge)</h2><p>将 newfeature 分支 合并到 master 分支：</p>
+<h2 id="清除所有储藏"><a href="#清除所有储藏" class="headerlink" title="清除所有储藏"></a>清除所有储藏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash clear</div></pre></td></tr></table></figure>
+<h1 id="合并（merge"><a href="#合并（merge" class="headerlink" title="合并（merge)"></a>合并（merge)</h1><p>将 newfeature 分支 合并到 master 分支：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout master</div><div class="line">git merge newfeature</div></pre></td></tr></table></figure>
 <p>或者一句话实现:  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge newfeature master</div></pre></td></tr></table></figure>
@@ -140,29 +120,29 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:1.txt</div><div class="line">...</div><div class="line">=======</div><div class="line">...</div><div class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; newfeature:1.txt</div></pre></td></tr></table></figure>
 <p><code>=======</code> 隔开的上半部分，是 HEAD（即 master 分支）中的内容，下半部分是在 newfeature 分支中的内容。解决冲突的办法无非是二选一或者亲自合并到一起。</p>
 <p>在解决了所有文件的冲突后，运行 <code>git add</code> 将它们标记为已解决。在运行一次 <code>git status</code> 来确认所有冲突都已解决。如果确认了所有冲突都已解决，就可以使用 <code>git commit</code> 来完成这次合并提交。</p>
-<h2 id="衍合（rebase）"><a href="#衍合（rebase）" class="headerlink" title="衍合（rebase）"></a>衍合（rebase）</h2><p>熟练掌握 <code>git rebase</code> 操作，包括 <code>git rebase -i</code> 和 <code>git rebase --onto</code>，掌握一种 git 工作流  </p>
+<h1 id="衍合（rebase）"><a href="#衍合（rebase）" class="headerlink" title="衍合（rebase）"></a>衍合（rebase）</h1><p>熟练掌握 <code>git rebase</code> 操作，包括 <code>git rebase -i</code> 和 <code>git rebase --onto</code>，掌握一种 git 工作流  </p>
 <p>待整理   </p>
 <p>…</p>
-<h2 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h2><p>三种状态：已修改、已暂存、已提交</p>
-<h4 id="修改最后一次提交"><a href="#修改最后一次提交" class="headerlink" title="修改最后一次提交"></a>修改最后一次提交</h4><p>有时候我们提交完了才发现漏掉了几个文件没有加，或者提交信息写错了。想要撤销刚才的操作提交，可以使用 <code>--amend</code> 选项重新提交：</p>
+<h1 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h1><p>三种状态：已修改、已暂存、已提交</p>
+<h2 id="修改最后一次提交"><a href="#修改最后一次提交" class="headerlink" title="修改最后一次提交"></a>修改最后一次提交</h2><p>有时候我们提交完了才发现漏掉了几个文件没有加，或者提交信息写错了。想要撤销刚才的操作提交，可以使用 <code>--amend</code> 选项重新提交：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit --amend</div></pre></td></tr></table></figure>
 <p>此命令将使用当前的暂存区域快照提交，如果刚才提交完没有做任何改动（<code>git add</code>），直接运行此命令的话，相当于有机会重新编辑提交说明，而所提交的文件快照和之前的一样。</p>
-<h4 id="对于已修改的文件撤销"><a href="#对于已修改的文件撤销" class="headerlink" title="对于已修改的文件撤销"></a>对于已修改的文件撤销</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout --[file name]</div></pre></td></tr></table></figure>
-<h4 id="对于已暂存的文件撤销"><a href="#对于已暂存的文件撤销" class="headerlink" title="对于已暂存的文件撤销"></a>对于已暂存的文件撤销</h4><p>将已暂存的撤销到修改状态，使用命令：</p>
+<h2 id="对于已修改的文件撤销"><a href="#对于已修改的文件撤销" class="headerlink" title="对于已修改的文件撤销"></a>对于已修改的文件撤销</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout --[file name]</div></pre></td></tr></table></figure>
+<h2 id="对于已暂存的文件撤销"><a href="#对于已暂存的文件撤销" class="headerlink" title="对于已暂存的文件撤销"></a>对于已暂存的文件撤销</h2><p>将已暂存的撤销到修改状态，使用命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset HEAD [file name]</div></pre></td></tr></table></figure>
-<h4 id="对于已提交的文件撤销"><a href="#对于已提交的文件撤销" class="headerlink" title="对于已提交的文件撤销"></a>对于已提交的文件撤销</h4><p>1.撤销某次提交之后的所有提交并放到修改状态区</p>
+<h2 id="对于已提交的文件撤销"><a href="#对于已提交的文件撤销" class="headerlink" title="对于已提交的文件撤销"></a>对于已提交的文件撤销</h2><p>1.撤销某次提交之后的所有提交并放到修改状态区</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset [commit id]</div></pre></td></tr></table></figure>
 <p>2.撤销某次提交之后的所有提交</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard [commit id]</div></pre></td></tr></table></figure>
 <p>3.撤销某次提交（并不删除提交历史）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git revert [commit id]</div></pre></td></tr></table></figure>
-<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p>Git 使用的标签有两种类型：</p>
+<h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><p>Git 使用的标签有两种类型：</p>
 <ul>
 <li>轻量级的标签</li>
 <li>含附注的标签</li>
 </ul>
 <p>轻量级标签就像是个不会变化的分支，实际上它就是个指向特定提交对象的引用。而含附注标签，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，点子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard（GPG）来签署或验证。一般我们都建议使用含附注的标签，已保留相关信息；当然，如果只是临时性夹住标签，或者不需要旁注额外信息，用轻量级标签也没问题。</p>
-<h4 id="新建标签"><a href="#新建标签" class="headerlink" title="新建标签"></a>新建标签</h4><p>1.新建含附注的标签</p>
+<h2 id="新建标签"><a href="#新建标签" class="headerlink" title="新建标签"></a>新建标签</h2><p>1.新建含附注的标签</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git tag -a [tagname] -m &apos;[tag 备注]&apos;</div></pre></td></tr></table></figure>
 <p>2.新建轻量级标签</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git tag [tagname]</div></pre></td></tr></table></figure>
@@ -171,17 +151,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin [tagname]</div></pre></td></tr></table></figure>
 <p>如果一次要提交所有本地标签，可使用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --tags</div></pre></td></tr></table></figure>
-<h4 id="查询已有标签"><a href="#查询已有标签" class="headerlink" title="查询已有标签"></a>查询已有标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git tag</div></pre></td></tr></table></figure>
-<h4 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h4><p>1.删除本地标签</p>
+<h2 id="查询已有标签"><a href="#查询已有标签" class="headerlink" title="查询已有标签"></a>查询已有标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git tag</div></pre></td></tr></table></figure>
+<h2 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h2><p>删除本地标签：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git tag -d [tagname]</div></pre></td></tr></table></figure>
-<p>2.删除远程标签</p>
+<p>删除远程标签：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :refs/tags/[tagname]</div></pre></td></tr></table></figure>
-<h4 id="检出标签"><a href="#检出标签" class="headerlink" title="检出标签"></a>检出标签</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout tags/[tagname]</div></pre></td></tr></table></figure>
-<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><h4 id="跳过使用暂存区域"><a href="#跳过使用暂存区域" class="headerlink" title="跳过使用暂存区域"></a>跳过使用暂存区域</h4><p>尽管使用暂存区域的方式可以精心准备要提交的细节，但有时候这么做有些麻烦。Git 提供了一个跳过使用暂存区域的方式，只要在提交的时候，给 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来以并提交，从而跳过 <code>git add</code> 步骤：</p>
+<h2 id="检出标签"><a href="#检出标签" class="headerlink" title="检出标签"></a>检出标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout tags/[tagname]</div></pre></td></tr></table></figure>
+<h1 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h1><h2 id="跳过使用暂存区域"><a href="#跳过使用暂存区域" class="headerlink" title="跳过使用暂存区域"></a>跳过使用暂存区域</h2><p>尽管使用暂存区域的方式可以精心准备要提交的细节，但有时候这么做有些麻烦。Git 提供了一个跳过使用暂存区域的方式，只要在提交的时候，给 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来以并提交，从而跳过 <code>git add</code> 步骤：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -a -m &apos;修改了文件&apos;</div></pre></td></tr></table></figure>
-<h4 id="新建分支并切换到新分支"><a href="#新建分支并切换到新分支" class="headerlink" title="新建分支并切换到新分支"></a>新建分支并切换到新分支</h4><p>比如，我们要创建一个新分支 newfeature 并立即切换到 newfeature 分支，我们可以：</p>
+<h2 id="新建分支并切换到新分支"><a href="#新建分支并切换到新分支" class="headerlink" title="新建分支并切换到新分支"></a>新建分支并切换到新分支</h2><p>比如，我们要创建一个新分支 newfeature 并立即切换到 newfeature 分支，我们可以：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b newfeature</div></pre></td></tr></table></figure>
-<h4 id="跟踪分支-1"><a href="#跟踪分支-1" class="headerlink" title="跟踪分支"></a>跟踪分支</h4><p>如果想要远程分支名和本地分支名一样的名字，可以用 <code>--track</code> 来简化</p>
+<h2 id="跟踪分支-1"><a href="#跟踪分支-1" class="headerlink" title="跟踪分支"></a>跟踪分支</h2><p>如果想要远程分支名和本地分支名一样的名字，可以用 <code>--track</code> 来简化</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch</div><div class="line">git checkout --track origin/newfeature</div></pre></td></tr></table></figure>
 <p>如果要为本地分支设定不同于远程分支的名字，只需：   </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch</div><div class="line">git checkout -b new origin/newfeature</div></pre></td></tr></table></figure></div></article></div></section><footer><div class="paginator"><a href="/2014/11/09/iphone-ping-mu-gua-pei/" class="prev">上一篇</a><a href="/2014/10/26/mian-shi-zi-ji/" class="next">下一篇</a></div><div data-thread-key="2014/11/02/git-xue-xi-zhi-lu/" data-title="Git 学习之路" data-url="http://iYiming.me/2014/11/02/git-xue-xi-zhi-lu/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"jiajiayouba"};
