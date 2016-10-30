@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://iYiming.me/"/>
-  <updated>2016-10-30T11:23:40.000Z</updated>
+  <updated>2016-10-30T11:27:45.000Z</updated>
   <id>http://iYiming.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://iYiming.me/2016/10/30/%E6%AF%8F%E6%97%A5%E7%88%AC%E5%8F%96%E6%8A%80%E6%9C%AF%E5%A4%A7%E7%89%9B%E5%BE%AE%E5%8D%9A%E7%94%9F%E6%88%90%E9%82%AE%E4%BB%B6%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://iYiming.me/2016/10/30/每日爬取技术大牛微博生成邮件（一）/</id>
     <published>2016-10-30T10:59:19.000Z</published>
-    <updated>2016-10-30T11:23:40.000Z</updated>
+    <updated>2016-10-30T11:27:45.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/images/weibo_spider/1.jpg" alt="微博爬虫"></p>
 <p>一年前，自己开通了公众号，将每天微博上最新的 iOS 技术文章，制作成笔记的形式分享出来。持续了一年时间，最近因为创业，已经好些天没有更新了。最近有人向我反馈这个问题，我也拿比较忙没有时间推脱。</p>
@@ -49,7 +49,7 @@
 <li>微博原始 URL 地址（这个在从上面 JSON 里看不出来，后续会介绍）</li>
 </ul>
 <p>通过上面的数据，获得一个叫 <code>mblog</code> 字段，这里把它描述成一个对象 <code>weibo</code>，那么上面要获取的数据为(伪代码)：</p>
-<p>微博 ID ：weibo.id<br>微博内容 ：weibo.text<br>微博创建时间：weibo.created_at<br>被转发的微博内容：weibo.retweeted_status.text<br>被转发的微博创建时间：weibo.retweeted_status.created_at<br>微博内容里文章链接地址：weibo.retweeted_status.text 里获得</p>
+<p>微博 ID ：<code>weibo.id</code><br>微博内容 ：<code>weibo.text</code><br>微博创建时间：<code>weibo.created_at</code><br>被转发的微博内容：<code>weibo.retweeted_status.text</code><br>被转发的微博创建时间：<code>weibo.retweeted_status.created_at</code><br>微博内容里文章链接地址：从 <code>weibo.retweeted_status.text</code> 中获得</p>
 <p>微博原始 URL 地址：</p>
 <p>通过微博客户端找到微博详情，地址如下：<br><a href="http://weibo.com/5861126740/EewuvDAEv" target="_blank" rel="external">http://weibo.com/5861126740/EewuvDAEv</a></p>
 <p>简化成：</p>

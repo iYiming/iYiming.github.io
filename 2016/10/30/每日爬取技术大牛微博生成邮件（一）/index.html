@@ -25,7 +25,7 @@
 <li>微博原始 URL 地址（这个在从上面 JSON 里看不出来，后续会介绍）</li>
 </ul>
 <p>通过上面的数据，获得一个叫 <code>mblog</code> 字段，这里把它描述成一个对象 <code>weibo</code>，那么上面要获取的数据为(伪代码)：</p>
-<p>微博 ID ：weibo.id<br>微博内容 ：weibo.text<br>微博创建时间：weibo.created_at<br>被转发的微博内容：weibo.retweeted_status.text<br>被转发的微博创建时间：weibo.retweeted_status.created_at<br>微博内容里文章链接地址：weibo.retweeted_status.text 里获得</p>
+<p>微博 ID ：<code>weibo.id</code><br>微博内容 ：<code>weibo.text</code><br>微博创建时间：<code>weibo.created_at</code><br>被转发的微博内容：<code>weibo.retweeted_status.text</code><br>被转发的微博创建时间：<code>weibo.retweeted_status.created_at</code><br>微博内容里文章链接地址：从 <code>weibo.retweeted_status.text</code> 中获得</p>
 <p>微博原始 URL 地址：</p>
 <p>通过微博客户端找到微博详情，地址如下：<br><a href="http://weibo.com/5861126740/EewuvDAEv" target="_blank" rel="external">http://weibo.com/5861126740/EewuvDAEv</a></p>
 <p>简化成：</p>
